@@ -1,0 +1,1283 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopi Ruang — Style Guide &amp; Design System</title>
+    <meta
+      name="description"
+      content="Fondasi design system minimal dan cozy untuk landing page specialty coffee café Kopi Ruang."
+    />
+    <meta property="og:title" content="Kopi Ruang — Style Guide &amp; Design System" />
+    <meta
+      property="og:description"
+      content="Fondasi design system minimal dan cozy untuk landing page specialty coffee café Kopi Ruang."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Fraunces (Heading Serif) & DM Sans (Body Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS v4 -->
+    <link rel="stylesheet" href="/src/index.css" />
+
+    <!-- Kopi Ruang Design System Tokens & Base Components -->
+    <style>
+      :root {
+        /* 1. Color Tokens */
+        --green-900: #17291f; /* Primary, section gelap */
+        --green-700: #22392c; /* Secondary, panel di atas hijau */
+        --gold-500: #b39a6e; /* Accent, CTA, garis, ikon */
+        --gold-700: #7a6035; /* Teks emas di latar terang (WCAG AA >= 4.5:1 di cream-100) */
+        --cream-100: #f5efe3; /* Background utama */
+        --beige-200: #e8dcc4; /* Surface / kartu */
+        --espresso-900: #2b1f17; /* Teks utama di latar terang */
+        --sage-500: #7f8f7a; /* Teks sekunder (latar gelap) & aksen garis */
+
+        /* Semantic & Contrast-Safe Pairings */
+        --text-muted-light: #4e5b4a; /* Turunan gelap sage untuk body sekunder di atas cream/beige (WCAG AA) */
+        --text-muted-dark: #b6c2b2; /* Turunan terang sage untuk body sekunder di atas green-900 (WCAG AA) */
+        --border-light: rgba(43, 31, 23, 0.12);
+        --border-dark: rgba(179, 154, 110, 0.24);
+        --gold-500-hover: #c3ab80;
+        --gold-500-active: #9e8458;
+
+        /* 2. Typography Tokens */
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+
+        /* 3. Spacing, Radius & Motion Tokens */
+        --container-max: 75rem; /* 1200px */
+        --container-px: clamp(1.25rem, 4vw, 3rem);
+        --radius-sm: 0.5rem;
+        --radius-md: 0.75rem;
+        --radius-lg: 1.25rem;
+        --radius-arch: 9999px 9999px var(--radius-md) var(--radius-md);
+
+        --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+        --dur-ui: 180ms;
+        --dur-reveal: 650ms;
+      }
+
+      /* Base Reset & Document Defaults */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--cream-100);
+        color: var(--espresso-900);
+        font-family: var(--font-sans);
+        font-size: clamp(0.9375rem, 1vw, 1rem);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Selection & Accessible Focus */
+      ::selection {
+        background-color: var(--gold-500);
+        color: var(--green-900);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--gold-500);
+        outline-offset: 3px;
+      }
+
+      /* =====================================================================
+         CONTAINER SYSTEM
+         ===================================================================== */
+      .kr-container {
+        width: 100%;
+        max-width: var(--container-max);
+        margin-inline: auto;
+        padding-inline: var(--container-px);
+      }
+
+      /* =====================================================================
+         RESPONSIVE TYPOGRAPHY SCALE
+         ===================================================================== */
+      .kr-h1,
+      .kr-h2,
+      .kr-h3,
+      .kr-h4 {
+        font-family: var(--font-serif);
+        font-variation-settings: "opsz" 72;
+        font-weight: 500;
+        text-wrap: balance;
+        margin: 0;
+      }
+
+      .kr-h1 {
+        font-size: clamp(2.25rem, 4.5vw, 3.75rem); /* 36px -> 60px */
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+      }
+
+      .kr-h2 {
+        font-size: clamp(1.75rem, 3.2vw, 2.625rem); /* 28px -> 42px */
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+      }
+
+      .kr-h3 {
+        font-size: clamp(1.375rem, 2.1vw, 1.875rem); /* 22px -> 30px */
+        line-height: 1.24;
+        letter-spacing: -0.01em;
+      }
+
+      .kr-h4 {
+        font-size: clamp(1.125rem, 1.5vw, 1.375rem); /* 18px -> 22px */
+        line-height: 1.32;
+      }
+
+      .kr-body-lg {
+        font-family: var(--font-sans);
+        font-size: clamp(1.0625rem, 1.25vw, 1.1875rem); /* 17px -> 19px */
+        line-height: 1.65;
+      }
+
+      .kr-body {
+        font-family: var(--font-sans);
+        font-size: clamp(0.9375rem, 1vw, 1rem); /* 15px -> 16px */
+        line-height: 1.65;
+      }
+
+      .kr-caption {
+        font-family: var(--font-sans);
+        font-size: clamp(0.75rem, 0.85vw, 0.8125rem); /* 12px -> 13px */
+        line-height: 1.5;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* =====================================================================
+         SECTION HEADING (Label Kecil Kapital + Judul Serif)
+         ===================================================================== */
+      .kr-section-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+
+      .kr-section-heading--center {
+        align-items: center;
+        text-align: center;
+      }
+
+      .kr-kicker {
+        font-family: var(--font-sans);
+        font-size: 0.75rem; /* 12px */
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold-700);
+        line-height: 1.3;
+      }
+
+      .kr-surface-dark .kr-kicker {
+        color: var(--gold-500);
+      }
+
+      .kr-heading-rule {
+        width: 2.75rem;
+        height: 1.5px;
+        background-color: var(--gold-500);
+        margin-top: 0.375rem;
+      }
+
+      /* =====================================================================
+         BUTTON SYSTEM (Primary & Secondary Outline)
+         ===================================================================== */
+      .kr-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 44px;
+        padding: 0.6875rem 1.5rem;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        line-height: 1.2;
+        white-space: nowrap;
+        flex-shrink: 0;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        text-decoration: none;
+        transition:
+          background-color var(--dur-ui) var(--ease-settle),
+          border-color var(--dur-ui) var(--ease-settle),
+          color var(--dur-ui) var(--ease-settle),
+          transform var(--dur-ui) var(--ease-settle);
+      }
+
+      .kr-btn:active {
+        transform: translateY(1px) scale(0.99);
+      }
+
+      .kr-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Primary: Latar emas (#B39A6E), teks hijau tua (#17291F) */
+      .kr-btn-primary {
+        background-color: var(--gold-500);
+        color: var(--green-900);
+        border-color: var(--gold-500);
+      }
+
+      .kr-btn-primary:hover:not(:disabled) {
+        background-color: var(--gold-500-hover);
+        border-color: var(--gold-500-hover);
+      }
+
+      .kr-btn-primary:active:not(:disabled) {
+        background-color: var(--gold-500-active);
+      }
+
+      /* Secondary: Outline di latar terang */
+      .kr-btn-secondary {
+        background-color: transparent;
+        color: var(--green-900);
+        border-color: var(--green-900);
+      }
+
+      .kr-btn-secondary:hover:not(:disabled) {
+        background-color: var(--green-900);
+        color: var(--cream-100);
+      }
+
+      /* Secondary Dark: Outline di latar hijau tua */
+      .kr-btn-secondary--dark,
+      .kr-surface-dark .kr-btn-secondary {
+        background-color: transparent;
+        color: var(--cream-100);
+        border-color: var(--gold-500);
+      }
+
+      .kr-btn-secondary--dark:hover:not(:disabled),
+      .kr-surface-dark .kr-btn-secondary:hover:not(:disabled) {
+        background-color: var(--gold-500);
+        color: var(--green-900);
+      }
+
+      /* Compact utility size */
+      .kr-btn-sm {
+        min-height: 40px;
+        padding: 0.5rem 1.125rem;
+        font-size: 0.875rem;
+      }
+
+      /* =====================================================================
+         MOTIF BENTUK ARCH (Frame Gambar Terinspirasi Logo)
+         ===================================================================== */
+      .kr-arch-frame {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-arch);
+        background-color: var(--beige-200);
+        border: 1px solid var(--border-light);
+      }
+
+      .kr-surface-dark .kr-arch-frame {
+        background-color: var(--green-700);
+        border-color: var(--border-dark);
+      }
+
+      .kr-arch-frame picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .kr-arch-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 600ms var(--ease-settle);
+      }
+
+      .kr-arch-frame:hover img {
+        transform: scale(1.03);
+      }
+
+      /* Bingkai garis emas halus di dalam arch */
+      .kr-arch-frame--ornament::after {
+        content: "";
+        position: absolute;
+        inset: 0.625rem;
+        border-radius: var(--radius-arch);
+        border: 1px solid rgba(179, 154, 110, 0.45);
+        pointer-events: none;
+      }
+
+      /* =====================================================================
+         SCROLL REVEAL ANIMATION (Ringan, Compositor-Only)
+         ===================================================================== */
+      .kr-reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity var(--dur-reveal) var(--ease-settle),
+          transform var(--dur-reveal) var(--ease-settle);
+        will-change: opacity, transform;
+      }
+
+      .kr-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .kr-reveal[data-delay="1"] {
+        transition-delay: 80ms;
+      }
+      .kr-reveal[data-delay="2"] {
+        transition-delay: 160ms;
+      }
+      .kr-reveal[data-delay="3"] {
+        transition-delay: 240ms;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .kr-reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .kr-arch-frame img,
+        .kr-btn {
+          transition: none;
+        }
+      }
+
+      /* Surface & Card Helpers */
+      .kr-surface-dark {
+        background-color: var(--green-900);
+        color: var(--cream-100);
+      }
+
+      .kr-panel-dark {
+        background-color: var(--green-700);
+        border: 1px solid var(--border-dark);
+        border-radius: var(--radius-md);
+      }
+
+      .kr-card-beige {
+        background-color: var(--beige-200);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+      }
+
+      .kr-hairline {
+        height: 1px;
+        width: 100%;
+        background-color: var(--border-light);
+      }
+
+      .kr-surface-dark .kr-hairline {
+        background-color: var(--border-dark);
+      }
+
+      /* Toast notification */
+      .kr-toast {
+        position: fixed;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        z-index: 50;
+        background-color: var(--green-900);
+        color: var(--cream-100);
+        border: 1px solid var(--gold-500);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem 1.125rem;
+        font-size: 0.875rem;
+        box-shadow: 0 12px 28px rgba(23, 41, 31, 0.22);
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition:
+          opacity 200ms var(--ease-settle),
+          transform 200ms var(--ease-settle);
+      }
+
+      .kr-toast.is-active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Top Bar: 3-Zone Contract -->
+    <header
+      class="border-b"
+      style="background-color: var(--cream-100); border-color: var(--border-light);"
+    >
+      <div class="kr-container flex items-center justify-between gap-8 py-4">
+        <a
+          href="index.html"
+          class="inline-flex items-center gap-2.5 whitespace-nowrap shrink-0 no-underline"
+          style="color: var(--espresso-900);"
+        >
+          <span
+            style="
+              font-family: var(--font-serif);
+              font-size: 1.25rem;
+              font-weight: 500;
+              letter-spacing: -0.01em;
+            "
+          >
+            Kopi Ruang
+          </span>
+        </a>
+
+        <nav
+          aria-label="Navigasi Design System"
+          class="hidden md:flex items-center gap-7"
+        >
+          <a
+            href="#palet"
+            class="kr-body whitespace-nowrap shrink-0 no-underline transition-colors duration-150 hover:underline underline-offset-4"
+            style="color: var(--espresso-900); font-weight: 500;"
+          >
+            Palet
+          </a>
+          <a
+            href="#tipografi"
+            class="kr-body whitespace-nowrap shrink-0 no-underline transition-colors duration-150 hover:underline underline-offset-4"
+            style="color: var(--espresso-900); font-weight: 500;"
+          >
+            Tipografi
+          </a>
+          <a
+            href="#komponen"
+            class="kr-body whitespace-nowrap shrink-0 no-underline transition-colors duration-150 hover:underline underline-offset-4"
+            style="color: var(--espresso-900); font-weight: 500;"
+          >
+            Komponen
+          </a>
+          <a
+            href="#motif-arch"
+            class="kr-body whitespace-nowrap shrink-0 no-underline transition-colors duration-150 hover:underline underline-offset-4"
+            style="color: var(--espresso-900); font-weight: 500;"
+          >
+            Motif Arch
+          </a>
+        </nav>
+
+        <div class="shrink-0">
+          <button
+            type="button"
+            id="copy-root-btn"
+            class="kr-btn kr-btn-primary kr-btn-sm"
+          >
+            Salin Token CSS
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="py-14 md:py-20">
+        <div class="kr-container">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div class="lg:col-span-7 kr-reveal">
+              <div class="kr-section-heading">
+                <span class="kr-kicker">Fondasi Design System</span>
+                <h1 class="kr-h1" style="color: var(--espresso-900);">
+                  Sistem Visual Kopi Ruang
+                </h1>
+                <div class="kr-heading-rule" aria-hidden="true"></div>
+              </div>
+
+              <p
+                class="kr-body-lg mt-6 max-w-2xl"
+                style="color: var(--text-muted-light);"
+              >
+                Spesimen token warna, skala tipografi responsif, komponen tombol,
+                struktur container, dan motif lengkungan arch untuk landing page
+                specialty coffee café bernuansa minimal dan hangat.
+              </p>
+
+              <div class="mt-8 flex flex-wrap items-center gap-4">
+                <a href="index.html" class="kr-btn kr-btn-primary">
+                  Buka Landing Page
+                </a>
+                <button
+                  type="button"
+                  id="replay-reveal-btn"
+                  class="kr-btn kr-btn-secondary"
+                >
+                  Putar Ulang Animasi
+                </button>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 kr-reveal" data-delay="1">
+              <div class="kr-card-beige p-6 md:p-8">
+                <div class="flex items-center justify-between gap-4 pb-4 border-b" style="border-color: var(--border-light);">
+                  <span class="kr-caption font-medium" style="color: var(--gold-700);">
+                    Proporsi Warna 60 · 30 · 10
+                  </span>
+                  <span class="kr-caption" style="color: var(--text-muted-light);">
+                    WCAG AA
+                  </span>
+                </div>
+
+                <div class="mt-5 flex h-12 w-full overflow-hidden rounded-lg border" style="border-color: var(--border-light);">
+                  <div
+                    class="flex items-center justify-center kr-caption font-medium"
+                    style="width: 60%; background-color: var(--cream-100); color: var(--espresso-900);"
+                    title="60% Cream & Beige"
+                  >
+                    60%
+                  </div>
+                  <div
+                    class="flex items-center justify-center kr-caption font-medium"
+                    style="width: 30%; background-color: var(--green-900); color: var(--cream-100);"
+                    title="30% Deep Green"
+                  >
+                    30%
+                  </div>
+                  <div
+                    class="flex items-center justify-center kr-caption font-medium"
+                    style="width: 10%; background-color: var(--gold-500); color: var(--green-900);"
+                    title="10% Gold Accent"
+                  >
+                    10%
+                  </div>
+                </div>
+
+                <div class="mt-5 grid grid-cols-3 gap-3 kr-caption" style="color: var(--espresso-900);">
+                  <div>
+                    <div class="font-medium">Krem / Beige</div>
+                    <div style="color: var(--text-muted-light);">Kanvas utama</div>
+                  </div>
+                  <div>
+                    <div class="font-medium">Hijau Tua</div>
+                    <div style="color: var(--text-muted-light);">Struktur gelap</div>
+                  </div>
+                  <div>
+                    <div class="font-medium">Emas</div>
+                    <div style="color: var(--text-muted-light);">CTA &amp; garis</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="kr-container"><div class="kr-hairline"></div></div>
+
+      <section id="palet" class="py-14 md:py-20">
+        <div class="kr-container">
+          <div class="kr-section-heading kr-reveal">
+            <span class="kr-kicker">01 · Color Tokens</span>
+            <h2 class="kr-h2">Palet Warna &amp; Aturan Kontras</h2>
+            <div class="kr-heading-rule" aria-hidden="true"></div>
+          </div>
+
+          <p
+            class="kr-body mt-4 max-w-2xl kr-reveal"
+            data-delay="1"
+            style="color: var(--text-muted-light);"
+          >
+            Klik kartu warna untuk menyalin variabel CSS. Gunakan
+            <code class="font-medium" style="color: var(--gold-700);">--gold-700</code>
+            untuk teks bernuansa emas di atas latar krem agar memenuhi kontras WCAG AA
+            (&ge; 4.5:1), bukan
+            <code class="font-medium" style="color: var(--espresso-900);">--gold-500</code>.
+          </p>
+
+          <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <button
+              type="button"
+              class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
+              data-token="--cream-100"
+              data-hex="#F5EFE3"
+            >
+              <div
+                class="h-24 w-full rounded-md border"
+                style="background-color: var(--cream-100); border-color: var(--border-light);"
+              ></div>
+              <div class="mt-3.5 flex items-baseline justify-between gap-2">
+                <span class="kr-body font-medium" style="color: var(--espresso-900);">--cream-100</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#F5EFE3</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
+                Background utama (60%)
+              </p>
+            </button>
+
+            <button
+              type="button"
+              class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
+              data-delay="1"
+              data-token="--beige-200"
+              data-hex="#E8DCC4"
+            >
+              <div
+                class="h-24 w-full rounded-md border"
+                style="background-color: var(--beige-200); border-color: var(--border-light);"
+              ></div>
+              <div class="mt-3.5 flex items-baseline justify-between gap-2">
+                <span class="kr-body font-medium" style="color: var(--espresso-900);">--beige-200</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#E8DCC4</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
+                Surface &amp; kartu ringan
+              </p>
+            </button>
+
+            <button
+              type="button"
+              class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
+              data-delay="2"
+              data-token="--green-900"
+              data-hex="#17291F"
+            >
+              <div
+                class="h-24 w-full rounded-md"
+                style="background-color: var(--green-900);"
+              ></div>
+              <div class="mt-3.5 flex items-baseline justify-between gap-2">
+                <span class="kr-body font-medium" style="color: var(--espresso-900);">--green-900</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#17291F</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
+                Primary &amp; section gelap (30%)
+              </p>
+            </button>
+
+            <button
+              type="button"
+              class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
+              data-delay="3"
+              data-token="--green-700"
+              data-hex="#22392C"
+            >
+              <div
+                class="h-24 w-full rounded-md"
+                style="background-color: var(--green-700);"
+              ></div>
+              <div class="mt-3.5 flex items-baseline justify-between gap-2">
+                <span class="kr-body font-medium" style="color: var(--espresso-900);">--green-700</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#22392C</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
+                Secondary panel di atas hijau
+              </p>
+            </button>
+
+            <button
+              type="button"
+              class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
+              data-token="--gold-500"
+              data-hex="#B39A6E"
+            >
+              <div
+                class="h-24 w-full rounded-md"
+                style="background-color: var(--gold-500);"
+              ></div>
+              <div class="mt-3.5 flex items-baseline justify-between gap-2">
+                <span class="kr-body font-medium" style="color: var(--espresso-900);">--gold-500</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#B39A6E</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
+                Accent, CTA, garis, ikon (10%)
+              </p>
+            </button>
+
+            <button
+              type="button"
+              class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
+              data-delay="1"
+              data-token="--gold-700"
+              data-hex="#7A6035"
+            >
+              <div
+                class="h-24 w-full rounded-md"
+                style="background-color: var(--gold-700);"
+              ></div>
+              <div class="mt-3.5 flex items-baseline justify-between gap-2">
+                <span class="kr-body font-medium" style="color: var(--espresso-900);">--gold-700</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#7A6035</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
+                Teks emas di latar terang (AA)
+              </p>
+            </button>
+
+            <button
+              type="button"
+              class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
+              data-delay="2"
+              data-token="--espresso-900"
+              data-hex="#2B1F17"
+            >
+              <div
+                class="h-24 w-full rounded-md"
+                style="background-color: var(--espresso-900);"
+              ></div>
+              <div class="mt-3.5 flex items-baseline justify-between gap-2">
+                <span class="kr-body font-medium" style="color: var(--espresso-900);">--espresso-900</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#2B1F17</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
+                Teks utama di latar terang
+              </p>
+            </button>
+
+            <button
+              type="button"
+              class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
+              data-delay="3"
+              data-token="--sage-500"
+              data-hex="#7F8F7A"
+            >
+              <div
+                class="h-24 w-full rounded-md"
+                style="background-color: var(--sage-500);"
+              ></div>
+              <div class="mt-3.5 flex items-baseline justify-between gap-2">
+                <span class="kr-body font-medium" style="color: var(--espresso-900);">--sage-500</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#7F8F7A</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
+                Teks sekunder &amp; aksen tenang
+              </p>
+            </button>
+          </div>
+
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5 kr-reveal">
+            <div class="p-5 rounded-xl border" style="background-color: var(--cream-100); border-color: var(--border-light);">
+              <div class="kr-caption font-semibold" style="color: var(--gold-700);">
+                --gold-700 di atas --cream-100 · 4.7:1 AA
+              </div>
+              <p class="kr-body mt-2 mb-0" style="color: var(--espresso-900);">
+                Teks utama memakai <strong>--espresso-900</strong> (13.7:1 AAA).
+              </p>
+            </div>
+            <div class="p-5 rounded-xl" style="background-color: var(--gold-500); color: var(--green-900);">
+              <div class="kr-caption font-semibold">
+                --green-900 di atas --gold-500 · 5.7:1 AA
+              </div>
+              <p class="kr-body mt-2 mb-0 font-medium">
+                Pasangan wajib untuk tombol primary.
+              </p>
+            </div>
+            <div class="p-5 rounded-xl kr-surface-dark">
+              <div class="kr-caption font-semibold" style="color: var(--gold-500);">
+                --gold-500 di atas --green-900 · 5.7:1 AA
+              </div>
+              <p class="kr-body mt-2 mb-0" style="color: var(--cream-100);">
+                Teks terang <strong>--cream-100</strong> di atas hijau (13.5:1 AAA).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="kr-container"><div class="kr-hairline"></div></div>
+
+      <section id="tipografi" class="py-14 md:py-20">
+        <div class="kr-container">
+          <div class="kr-section-heading kr-reveal">
+            <span class="kr-kicker">02 · Tipografi</span>
+            <h2 class="kr-h2">Skala Ukuran Responsif</h2>
+            <div class="kr-heading-rule" aria-hidden="true"></div>
+          </div>
+
+          <p
+            class="kr-body mt-4 max-w-2xl kr-reveal"
+            data-delay="1"
+            style="color: var(--text-muted-light);"
+          >
+            Pairing <strong>Fraunces</strong> untuk judul editorial berkarakter hangat
+            dengan <strong>DM Sans</strong> untuk keterbacaan UI dan paragraf yang bersih.
+          </p>
+
+          <div class="mt-10 divide-y border-y" style="border-color: var(--border-light);">
+            <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline kr-reveal">
+              <div class="md:col-span-3 kr-caption" style="color: var(--gold-700);">
+                H1 · Fraunces · clamp(2.25rem, 4.5vw, 3.75rem)
+              </div>
+              <div class="md:col-span-9">
+                <p class="kr-h1">Ruang tenang untuk menikmati seduhan.</p>
+              </div>
+            </div>
+
+            <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline kr-reveal">
+              <div class="md:col-span-3 kr-caption" style="color: var(--gold-700);">
+                H2 · Fraunces · clamp(1.75rem, 3.2vw, 2.625rem)
+              </div>
+              <div class="md:col-span-9">
+                <p class="kr-h2">Ritual pagi yang hangat dan terukur.</p>
+              </div>
+            </div>
+
+            <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline kr-reveal">
+              <div class="md:col-span-3 kr-caption" style="color: var(--gold-700);">
+                H3 · Fraunces · clamp(1.375rem, 2.1vw, 1.875rem)
+              </div>
+              <div class="md:col-span-9">
+                <p class="kr-h3">Single origin pilihan musiman.</p>
+              </div>
+            </div>
+
+            <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline kr-reveal">
+              <div class="md:col-span-3 kr-caption" style="color: var(--gold-700);">
+                H4 · Fraunces · clamp(1.125rem, 1.5vw, 1.375rem)
+              </div>
+              <div class="md:col-span-9">
+                <p class="kr-h4">Manual brew dengan rasio presisi.</p>
+              </div>
+            </div>
+
+            <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline kr-reveal">
+              <div class="md:col-span-3 kr-caption" style="color: var(--gold-700);">
+                Body Large · DM Sans · 17px–19px
+              </div>
+              <div class="md:col-span-9">
+                <p class="kr-body-lg m-0 max-w-2xl" style="color: var(--espresso-900);">
+                  Paragraf pembuka memakai ukuran lebih lapang untuk ritme baca yang
+                  santai pada pengantar halaman atau deskripsi utama.
+                </p>
+              </div>
+            </div>
+
+            <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline kr-reveal">
+              <div class="md:col-span-3 kr-caption" style="color: var(--gold-700);">
+                Body · DM Sans · 15px–16px
+              </div>
+              <div class="md:col-span-9">
+                <p class="kr-body m-0 max-w-2xl" style="color: var(--text-muted-light);">
+                  Teks utama menggunakan line-height 1.65 dan lebar kolom 65–75ch agar
+                  tetap nyaman dibaca di layar ponsel maupun desktop.
+                </p>
+              </div>
+            </div>
+
+            <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline kr-reveal">
+              <div class="md:col-span-3 kr-caption" style="color: var(--gold-700);">
+                Caption · DM Sans · 12px–13px
+              </div>
+              <div class="md:col-span-9">
+                <p class="kr-caption m-0" style="color: var(--text-muted-light);">
+                  08:00 – 22:00 WIB · Catatan kaki, metadata waktu, dan label teknis (tabular-nums).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="kr-container"><div class="kr-hairline"></div></div>
+
+      <section id="komponen" class="py-14 md:py-20">
+        <div class="kr-container">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 kr-reveal">
+            <div class="kr-section-heading">
+              <span class="kr-kicker">03 · Komponen Dasar</span>
+              <h2 class="kr-h2">Tombol, Section Heading &amp; Container</h2>
+              <div class="kr-heading-rule" aria-hidden="true"></div>
+            </div>
+
+            <div
+              class="inline-flex items-center p-1 rounded-lg border self-start"
+              style="background-color: var(--beige-200); border-color: var(--border-light);"
+              role="group"
+              aria-label="Uji latar komponen"
+            >
+              <button
+                type="button"
+                id="surface-light-btn"
+                class="px-3.5 py-2 rounded-md kr-caption font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0"
+                style="background-color: var(--cream-100); color: var(--espresso-900);"
+                aria-pressed="true"
+              >
+                Latar Terang (--cream-100)
+              </button>
+              <button
+                type="button"
+                id="surface-dark-btn"
+                class="px-3.5 py-2 rounded-md kr-caption font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0"
+                style="background-color: transparent; color: var(--espresso-900);"
+                aria-pressed="false"
+              >
+                Latar Gelap (--green-900)
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="component-lab"
+            class="mt-8 p-6 sm:p-10 rounded-xl border transition-colors duration-300 kr-reveal"
+            style="background-color: var(--beige-200); border-color: var(--border-light);"
+          >
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+              <div>
+                <div class="kr-caption font-medium mb-4" id="lab-label-heading" style="color: var(--text-muted-light);">
+                  Komponen Section Heading (.kr-section-heading)
+                </div>
+                <div class="kr-section-heading">
+                  <span class="kr-kicker">Kicker Label Kapital</span>
+                  <h3 class="kr-h3">Judul Section Serif</h3>
+                  <div class="kr-heading-rule" aria-hidden="true"></div>
+                </div>
+                <p class="kr-body mt-4 mb-0" id="lab-copy" style="color: var(--text-muted-light);">
+                  Menggabungkan label kecil uppercase berjarak huruf lebar dengan judul
+                  Fraunces dan garis aksen emas 1.5px.
+                </p>
+              </div>
+
+              <div>
+                <div class="kr-caption font-medium mb-4" id="lab-label-buttons" style="color: var(--text-muted-light);">
+                  Komponen Tombol (.kr-btn-primary &amp; .kr-btn-secondary)
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4">
+                  <button type="button" class="kr-btn kr-btn-primary">
+                    Tombol Primary
+                  </button>
+                  <button type="button" class="kr-btn kr-btn-secondary">
+                    Tombol Secondary
+                  </button>
+                  <button type="button" class="kr-btn kr-btn-primary" disabled>
+                    Disabled
+                  </button>
+                </div>
+
+                <div class="mt-6 pt-5 border-t" id="lab-divider" style="border-color: var(--border-light);">
+                  <div class="kr-caption" id="lab-spec-note" style="color: var(--text-muted-light);">
+                    Target sentuh &ge; 44px · Primary: latar <code>--gold-500</code>, teks
+                    <code>--green-900</code> · Secondary: outline adaptif terang/gelap.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 sm:p-8 kr-card-beige kr-reveal">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b" style="border-color: var(--border-light);">
+              <span class="kr-body font-medium" style="color: var(--espresso-900);">
+                Komponen Container (.kr-container)
+              </span>
+              <span class="kr-caption" style="color: var(--gold-700);">
+                max-width: 1200px · padding-inline: clamp(1.25rem, 4vw, 3rem)
+              </span>
+            </div>
+            <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+              <div class="py-3 rounded-md border kr-caption" style="background-color: var(--cream-100); border-color: var(--border-light);">
+                Mobile · 20px px
+              </div>
+              <div class="py-3 rounded-md border kr-caption" style="background-color: var(--cream-100); border-color: var(--border-light);">
+                Tablet · 32px px
+              </div>
+              <div class="py-3 rounded-md border kr-caption" style="background-color: var(--cream-100); border-color: var(--border-light);">
+                Desktop · 48px px
+              </div>
+              <div class="py-3 rounded-md border kr-caption" style="background-color: var(--cream-100); border-color: var(--border-light);">
+                Max · 1200px
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="motif-arch" class="kr-surface-dark py-16 md:py-24">
+        <div class="kr-container">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 kr-reveal">
+            <div class="kr-section-heading">
+              <span class="kr-kicker">04 · Motif Bentuk Arch &amp; Panel Hijau</span>
+              <h2 class="kr-h2" style="color: var(--cream-100);">
+                Lengkungan Arch &amp; Permukaan Hijau Tua
+              </h2>
+              <div class="kr-heading-rule" aria-hidden="true"></div>
+            </div>
+
+            <p class="kr-body max-w-md m-0" style="color: var(--text-muted-dark);">
+              Menampilkan proporsi 30% permukaan <code style="color: var(--gold-500);">--green-900</code>,
+              panel <code style="color: var(--gold-500);">--green-700</code>, dan frame
+              lengkungan atas <code style="color: var(--gold-500);">.kr-arch-frame</code>.
+            </p>
+          </div>
+
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            <div class="kr-panel-dark p-5 flex flex-col kr-reveal">
+              <div class="kr-arch-frame kr-arch-frame--ornament aspect-[3/4]">
+                <picture>
+                  <!-- Siap WebP: <source srcset="/src/assets/images/tentang-interior-cafe.webp" type="image/webp" /> -->
+                  <img
+                    src="/src/assets/images/tentang-interior-cafe.jpg"
+                    alt="Interior Kopi Ruang dengan lengkungan arch dan sofa hijau tua"
+                    width="896"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                    referrerpolicy="no-referrer"
+                  />
+                </picture>
+              </div>
+              <div class="mt-4 pt-1 flex items-center justify-between gap-3">
+                <span class="kr-h4" style="color: var(--cream-100);">Arch Berbingkai</span>
+                <span class="kr-caption" style="color: var(--gold-500);">3:4 · Ornament</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-dark);">
+                Kelas <code>.kr-arch-frame--ornament</code> menambahkan garis emas tipis di dalam lengkungan.
+              </p>
+            </div>
+
+            <div class="kr-panel-dark p-5 flex flex-col kr-reveal" data-delay="1">
+              <div class="kr-arch-frame aspect-[3/4]">
+                <picture>
+                  <!-- Siap WebP: <source srcset="/src/assets/images/hero-pour-over.webp" type="image/webp" /> -->
+                  <img
+                    src="/src/assets/images/hero-pour-over.jpg"
+                    alt="Seduhan manual pour-over dengan cangkir putih dan tanaman hijau"
+                    width="896"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                    referrerpolicy="no-referrer"
+                  />
+                </picture>
+              </div>
+              <div class="mt-4 pt-1 flex items-center justify-between gap-3">
+                <span class="kr-h4" style="color: var(--cream-100);">Arch Polos</span>
+                <span class="kr-caption" style="color: var(--gold-500);">3:4 · Clean</span>
+              </div>
+              <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-dark);">
+                Kelas dasar <code>.kr-arch-frame</code> dengan sudut bawah halus dan zoom ringan saat hover.
+              </p>
+            </div>
+
+            <div class="kr-panel-dark p-5 flex flex-col justify-between kr-reveal" data-delay="2">
+              <div>
+                <div class="kr-arch-frame aspect-[4/3]">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-espresso.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-espresso.jpg"
+                      alt="Secangkir espresso dalam cangkir hijau tua di atas linen krem"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 pt-1 flex items-center justify-between gap-3">
+                  <span class="kr-h4" style="color: var(--cream-100);">Arch Ringkas</span>
+                  <span class="kr-caption" style="color: var(--gold-500);">4:3 · Panel 700</span>
+                </div>
+                <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-dark);">
+                  Diletakkan di atas panel <code>--green-700</code> dengan tombol aksi dark-surface.
+                </p>
+              </div>
+
+              <div class="mt-6 flex flex-wrap gap-3">
+                <button type="button" id="copy-arch-css-btn" class="kr-btn kr-btn-primary kr-btn-sm">
+                  Salin CSS Arch
+                </button>
+                <a href="#top" class="kr-btn kr-btn-secondary kr-btn-sm">
+                  Kembali ke Atas
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="border-t py-8"
+      style="background-color: var(--cream-100); border-color: var(--border-light);"
+    >
+      <div class="kr-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="kr-caption" style="color: var(--espresso-900);">
+          <span style="font-family: var(--font-serif); font-size: 0.9375rem; font-weight: 500;">Kopi Ruang</span>
+          <span style="color: var(--text-muted-light);"> · Style Guide</span>
+        </div>
+        <div class="kr-caption" style="color: var(--text-muted-light);">
+          HTML · Tailwind CSS · Vanilla JavaScript
+        </div>
+      </div>
+    </footer>
+
+    <div
+      id="kr-toast"
+      class="kr-toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <script>
+      (function () {
+        const toastEl = document.getElementById("kr-toast");
+        let toastTimer = null;
+
+        function showToast(message) {
+          if (!toastEl) return;
+          toastEl.textContent = message;
+          toastEl.classList.add("is-active");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => {
+            toastEl.classList.remove("is-active");
+          }, 2200);
+        }
+
+        async function copyText(text, label) {
+          try {
+            await navigator.clipboard.writeText(text);
+            showToast("Disalin: " + label);
+          } catch (_err) {
+            showToast(label + " (" + text + ")");
+          }
+        }
+
+        const revealEls = Array.from(document.querySelectorAll(".kr-reveal"));
+        const prefersReduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        if (prefersReduced || !("IntersectionObserver" in window)) {
+          revealEls.forEach((el) => el.classList.add("is-visible"));
+        } else {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -24px 0px" }
+          );
+
+          revealEls.forEach((el) => observer.observe(el));
+        }
+
+        const replayBtn = document.getElementById("replay-reveal-btn");
+        if (replayBtn) {
+          replayBtn.addEventListener("click", () => {
+            revealEls.forEach((el) => el.classList.remove("is-visible"));
+            requestAnimationFrame(() => {
+              setTimeout(() => {
+                revealEls.forEach((el) => el.classList.add("is-visible"));
+              }, 80);
+            });
+            showToast("Animasi fade & slide diputar ulang");
+          });
+        }
+
+        document.querySelectorAll(".kr-swatch").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const token = btn.getAttribute("data-token");
+            const hex = btn.getAttribute("data-hex");
+            if (token && hex) {
+              copyText("var(" + token + ")", token + " · " + hex);
+            }
+          });
+        });
+
+        const copyRootBtn = document.getElementById("copy-root-btn");
+        if (copyRootBtn) {
+          copyRootBtn.addEventListener("click", () => {
+            const rootSnippet = `:root {\n  --green-900: #17291F;\n  --green-700: #22392C;\n  --gold-500: #B39A6E;\n  --gold-700: #7A6035;\n  --cream-100: #F5EFE3;\n  --beige-200: #E8DCC4;\n  --espresso-900: #2B1F17;\n  --sage-500: #7F8F7A;\n}`;
+            copyText(rootSnippet, "Variabel warna :root");
+          });
+        }
+
+        const copyArchBtn = document.getElementById("copy-arch-css-btn");
+        if (copyArchBtn) {
+          copyArchBtn.addEventListener("click", () => {
+            const archSnippet = `.kr-arch-frame {\n  overflow: hidden;\n  border-radius: 9999px 9999px 0.75rem 0.75rem;\n}`;
+            copyText(archSnippet, "CSS .kr-arch-frame");
+          });
+        }
+
+        const lab = document.getElementById("component-lab");
+        const lightBtn = document.getElementById("surface-light-btn");
+        const darkBtn = document.getElementById("surface-dark-btn");
+        const labTextIds = [
+          "lab-label-heading",
+          "lab-label-buttons",
+          "lab-copy",
+          "lab-spec-note"
+        ];
+        const labDivider = document.getElementById("lab-divider");
+
+        function setLabSurface(mode) {
+          if (!lab || !lightBtn || !darkBtn) return;
+          const isDark = mode === "dark";
+
+          lab.classList.toggle("kr-surface-dark", isDark);
+          lab.style.backgroundColor = isDark
+            ? "var(--green-900)"
+            : "var(--beige-200)";
+          lab.style.borderColor = isDark
+            ? "var(--border-dark)"
+            : "var(--border-light)";
+          lab.style.color = isDark
+            ? "var(--cream-100)"
+            : "var(--espresso-900)";
+
+          labTextIds.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) {
+              el.style.color = isDark
+                ? "var(--text-muted-dark)"
+                : "var(--text-muted-light)";
+            }
+          });
+
+          if (labDivider) {
+            labDivider.style.borderColor = isDark
+              ? "var(--border-dark)"
+              : "var(--border-light)";
+          }
+
+          lightBtn.setAttribute("aria-pressed", String(!isDark));
+          darkBtn.setAttribute("aria-pressed", String(isDark));
+
+          lightBtn.style.backgroundColor = !isDark
+            ? "var(--cream-100)"
+            : "transparent";
+          lightBtn.style.color = !isDark
+            ? "var(--espresso-900)"
+            : "var(--espresso-900)";
+
+          darkBtn.style.backgroundColor = isDark
+            ? "var(--green-900)"
+            : "transparent";
+          darkBtn.style.color = isDark
+            ? "var(--cream-100)"
+            : "var(--espresso-900)";
+        }
+
+        if (lightBtn && darkBtn) {
+          lightBtn.addEventListener("click", () => setLabSurface("light"));
+          darkBtn.addEventListener("click", () => setLabSurface("dark"));
+        }
+      })();
+    </script>
+  </body>
+</html>

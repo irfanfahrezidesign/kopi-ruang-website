@@ -1,0 +1,3370 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopi Ruang — Specialty Coffee Shop &amp; Ruang Kerja Nyaman</title>
+    <meta
+      name="description"
+      content="Kopi Ruang adalah specialty coffee shop dengan biji kopi lokal pilihan, WiFi cepat, dan suasana minimal yang nyaman untuk bekerja dan berkumpul."
+    />
+    <meta name="theme-color" content="#17291F" />
+
+    <!-- Open Graph / Social SEO -->
+    <meta
+      property="og:title"
+      content="Kopi Ruang — Specialty Coffee Shop &amp; Ruang Kerja Nyaman"
+    />
+    <meta
+      property="og:description"
+      content="Specialty coffee dari biji lokal pilihan, dalam suasana yang nyaman untuk bekerja dan berkumpul di Jakarta Selatan."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Kopi Ruang" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Kopi Ruang — Specialty Coffee Shop"
+    />
+    <meta
+      name="twitter:description"
+      content="Specialty coffee dari biji lokal pilihan, dalam suasana yang nyaman untuk bekerja dan berkumpul."
+    />
+
+    <!-- Favicon: Lambang Arch Logo Kopi Ruang -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317291F'/%3E%3Cpath d='M18 46V27c0-7.732 6.268-14 14-14s14 6.268 14 14v19' fill='none' stroke='%23B39A6E' stroke-width='3.5' stroke-linecap='round'/%3E%3Cline x1='12' y1='46' x2='52' y2='46' stroke='%23B39A6E' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M32 39V22m0 8l-6-4m6 1l6-4' fill='none' stroke='%23B39A6E' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+
+    <!-- Google Fonts: Fraunces (Heading Serif) & DM Sans (Body Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS v4 -->
+    <link rel="stylesheet" href="/src/index.css" />
+
+    <!-- Kopi Ruang Design System Tokens & Base Components -->
+    <style>
+      :root {
+        /* 1. Color Tokens */
+        --green-900: #17291f; /* Primary, section gelap */
+        --green-700: #22392c; /* Secondary, panel di atas hijau */
+        --gold-500: #b39a6e; /* Accent, CTA, garis, ikon */
+        --gold-700: #7a6035; /* Teks emas di latar terang (WCAG AA >= 4.5:1 di cream-100) */
+        --cream-100: #f5efe3; /* Background utama */
+        --beige-200: #e8dcc4; /* Surface / kartu */
+        --espresso-900: #2b1f17; /* Teks utama di latar terang */
+        --sage-500: #7f8f7a; /* Teks sekunder (latar gelap) & aksen garis */
+
+        /* Semantic & Contrast-Safe Pairings */
+        --text-muted-light: #3e4a3b; /* Kontras >= 7.5:1 di cream-100 & >= 6.4:1 di beige-200 (WCAG AA/AAA) */
+        --text-muted-dark: #c4cfc0; /* Kontras >= 7.5:1 di atas --green-900 */
+        --border-light: rgba(43, 31, 23, 0.14);
+        --border-dark: rgba(179, 154, 110, 0.28);
+        --gold-500-hover: #c3ab80;
+        --gold-500-active: #9e8458;
+
+        /* 2. Typography Tokens */
+        --font-serif: "Fraunces", Georgia, serif;
+        --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+
+        /* 3. Spacing, Radius & Motion Tokens */
+        --container-max: 75rem; /* 1200px */
+        --container-px: clamp(1.25rem, 4vw, 3rem);
+        --radius-sm: 0.5rem;
+        --radius-md: 0.75rem;
+        --radius-lg: 1rem; /* 16px */
+        --radius-arch: 9999px 9999px var(--radius-md) var(--radius-md);
+
+        --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+        --dur-ui: 180ms;
+        --dur-reveal: 650ms;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--cream-100);
+        color: var(--espresso-900);
+        font-family: var(--font-sans);
+        font-size: clamp(0.9375rem, 1vw, 1rem);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      ::selection {
+        background-color: var(--gold-500);
+        color: var(--green-900);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--gold-500);
+        outline-offset: 3px;
+      }
+
+      /* =====================================================================
+         CONTAINER SYSTEM
+         ===================================================================== */
+      .kr-container {
+        width: 100%;
+        max-width: var(--container-max);
+        margin-inline: auto;
+        padding-inline: var(--container-px);
+      }
+
+      /* =====================================================================
+         RESPONSIVE TYPOGRAPHY SCALE
+         ===================================================================== */
+      .kr-h1,
+      .kr-h2,
+      .kr-h3,
+      .kr-h4 {
+        font-family: var(--font-serif);
+        font-variation-settings: "opsz" 72;
+        font-weight: 500;
+        text-wrap: balance;
+        margin: 0;
+      }
+
+      .kr-h1 {
+        font-size: clamp(2.25rem, 4.3vw, 3.625rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+      }
+
+      .kr-h2 {
+        font-size: clamp(1.75rem, 3.2vw, 2.625rem);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+      }
+
+      .kr-h3 {
+        font-size: clamp(1.375rem, 2.1vw, 1.875rem);
+        line-height: 1.24;
+        letter-spacing: -0.01em;
+      }
+
+      .kr-h4 {
+        font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+        line-height: 1.32;
+      }
+
+      .kr-body-lg {
+        font-family: var(--font-sans);
+        font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);
+        line-height: 1.65;
+      }
+
+      .kr-body {
+        font-family: var(--font-sans);
+        font-size: clamp(0.9375rem, 1vw, 1rem);
+        line-height: 1.65;
+      }
+
+      .kr-caption {
+        font-family: var(--font-sans);
+        font-size: clamp(0.75rem, 0.85vw, 0.8125rem);
+        line-height: 1.5;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* =====================================================================
+         SECTION HEADING
+         ===================================================================== */
+      .kr-section-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+
+      .kr-section-heading--center {
+        align-items: center;
+        text-align: center;
+      }
+
+      .kr-kicker {
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold-700);
+        line-height: 1.3;
+      }
+
+      .kr-surface-dark .kr-kicker {
+        color: var(--gold-500);
+      }
+
+      .kr-heading-rule {
+        width: 2.75rem;
+        height: 1.5px;
+        background-color: var(--gold-500);
+        margin-top: 0.375rem;
+      }
+
+      /* =====================================================================
+         BUTTON SYSTEM
+         ===================================================================== */
+      .kr-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 44px;
+        padding: 0.6875rem 1.5rem;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        line-height: 1.2;
+        white-space: nowrap;
+        flex-shrink: 0;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        text-decoration: none;
+        transition:
+          background-color var(--dur-ui) var(--ease-settle),
+          border-color var(--dur-ui) var(--ease-settle),
+          color var(--dur-ui) var(--ease-settle),
+          transform var(--dur-ui) var(--ease-settle);
+      }
+
+      .kr-btn:active {
+        transform: translateY(1px) scale(0.99);
+      }
+
+      .kr-btn-primary {
+        background-color: var(--gold-500);
+        color: var(--green-900);
+        border-color: var(--gold-500);
+      }
+
+      .kr-btn-primary:hover {
+        background-color: var(--gold-500-hover);
+        border-color: var(--gold-500-hover);
+      }
+
+      .kr-btn-primary:active {
+        background-color: var(--gold-500-active);
+      }
+
+      .kr-btn-secondary {
+        background-color: transparent;
+        color: var(--green-900);
+        border-color: var(--green-900);
+      }
+
+      .kr-btn-secondary:hover {
+        background-color: var(--green-900);
+        color: var(--cream-100);
+      }
+
+      .kr-btn-secondary--dark,
+      .kr-surface-dark .kr-btn-secondary {
+        background-color: transparent;
+        color: var(--cream-100);
+        border-color: var(--gold-500);
+      }
+
+      .kr-btn-secondary--dark:hover,
+      .kr-surface-dark .kr-btn-secondary:hover {
+        background-color: var(--gold-500);
+        color: var(--green-900);
+      }
+
+      .kr-btn-sm {
+        min-height: 40px;
+        padding: 0.5rem 1.125rem;
+        font-size: 0.875rem;
+      }
+
+      /* =====================================================================
+         MOTIF BENTUK ARCH
+         ===================================================================== */
+      .kr-arch-frame {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-arch);
+        background-color: var(--beige-200);
+        border: 1px solid var(--border-light);
+      }
+
+      .kr-surface-dark .kr-arch-frame {
+        background-color: var(--green-700);
+        border-color: var(--border-dark);
+      }
+
+      .kr-arch-frame picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .kr-arch-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 600ms var(--ease-settle);
+      }
+
+      .kr-arch-frame:hover img {
+        transform: scale(1.03);
+      }
+
+      .kr-arch-showcase {
+        position: relative;
+        width: 100%;
+        max-width: 25rem;
+        margin-inline: auto;
+      }
+
+      @media (min-width: 1024px) {
+        .kr-arch-showcase {
+          max-width: 26rem;
+          margin-inline: 0;
+          margin-left: auto;
+        }
+      }
+
+      .kr-arch-outline-offset {
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius-arch);
+        border: 1.5px solid var(--gold-500);
+        transform: translate(12px, 12px);
+        pointer-events: none;
+        opacity: 0.82;
+      }
+
+      @media (min-width: 640px) {
+        .kr-arch-outline-offset {
+          transform: translate(16px, 16px);
+        }
+      }
+
+      /* =====================================================================
+         1. NAVBAR STICKY (Compact ~72px setelah scroll > 40px)
+         ===================================================================== */
+      .kr-navbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background-color: var(--green-900);
+        border-bottom: 1px solid transparent;
+        transition: border-color 240ms var(--ease-settle);
+      }
+
+      .kr-navbar.is-scrolled {
+        border-bottom-color: rgba(179, 154, 110, 0.5);
+      }
+
+      .kr-navbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        padding-block: 0.875rem; /* ~14px */
+        min-height: 72px;
+        transition:
+          padding-block 260ms var(--ease-settle),
+          min-height 260ms var(--ease-settle);
+      }
+
+      .kr-navbar.is-compact .kr-navbar-inner {
+        padding-block: 0.625rem; /* ~10px -> total ~72px dengan logo 44px */
+        min-height: 72px;
+      }
+
+      .kr-navbar-logo {
+        display: block;
+        height: 48px;
+        width: auto;
+        transition:
+          height 260ms var(--ease-settle),
+          transform 260ms var(--ease-settle);
+        will-change: height, transform;
+      }
+
+      @media (min-width: 768px) {
+        .kr-navbar-logo {
+          height: 64px;
+        }
+      }
+
+      .kr-navbar.is-compact .kr-navbar-logo {
+        height: 44px;
+      }
+
+      .kr-nav-link {
+        color: var(--cream-100);
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+        position: relative;
+        padding-block: 0.25rem;
+        transition: color var(--dur-ui) var(--ease-settle);
+      }
+
+      .kr-nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1.5px;
+        background-color: var(--gold-500);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 200ms var(--ease-settle);
+      }
+
+      .kr-nav-link:hover,
+      .kr-nav-link:focus-visible {
+        color: var(--gold-500);
+      }
+
+      .kr-nav-link:hover::after,
+      .kr-nav-link:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      .kr-mobile-panel {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background-color: var(--green-900);
+        color: var(--cream-100);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem var(--container-px) 2rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition:
+          opacity 260ms var(--ease-settle),
+          transform 260ms var(--ease-settle),
+          visibility 260ms step-end;
+      }
+
+      .kr-mobile-panel.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition:
+          opacity 260ms var(--ease-settle),
+          transform 260ms var(--ease-settle),
+          visibility 0s step-start;
+      }
+
+      /* =====================================================================
+         2. HERO SECTION (2 Kolom 55%/45% di Desktop >= 1024px)
+         ===================================================================== */
+      .kr-hero {
+        min-height: min(90vh, 760px);
+        display: flex;
+        align-items: center;
+        padding-block: clamp(2.5rem, 5vw, 4.5rem);
+      }
+
+      .kr-hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.75rem;
+        align-items: center;
+        width: 100%;
+      }
+
+      .kr-hero-headline {
+        max-width: 13ch;
+      }
+
+      @media (min-width: 1024px) {
+        .kr-hero-grid {
+          grid-template-columns: minmax(0, 55%) minmax(0, 45%);
+          gap: clamp(2.5rem, 4vw, 4rem);
+        }
+      }
+
+      /* =====================================================================
+         4. KEUNGGULAN CARDS
+         ===================================================================== */
+      .kr-feature-card {
+        position: relative;
+        background-color: var(--cream-100);
+        border: 1px solid rgba(179, 154, 110, 0.45);
+        border-radius: var(--radius-lg); /* 16px */
+        padding: clamp(1.5rem, 2.5vw, 2rem);
+        transition: transform 240ms var(--ease-settle);
+        will-change: transform;
+      }
+
+      .kr-feature-card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: var(--radius-lg);
+        border: 1.5px solid var(--gold-700);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 240ms var(--ease-settle);
+        will-change: opacity;
+      }
+
+      .kr-feature-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .kr-feature-card:hover::after {
+        opacity: 1;
+      }
+
+      /* =====================================================================
+         5. MENU UNGGULAN
+         ===================================================================== */
+      .kr-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0.625rem 1.375rem;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        white-space: nowrap;
+        flex-shrink: 0;
+        cursor: pointer;
+        border: 1.5px solid var(--gold-700);
+        background-color: transparent;
+        color: var(--gold-700);
+        transition:
+          background-color var(--dur-ui) var(--ease-settle),
+          color var(--dur-ui) var(--ease-settle),
+          border-color var(--dur-ui) var(--ease-settle);
+      }
+
+      .kr-tab:hover {
+        background-color: rgba(23, 41, 31, 0.06);
+        color: var(--green-900);
+        border-color: var(--green-900);
+      }
+
+      .kr-tab[aria-selected="true"] {
+        background-color: var(--green-900);
+        color: var(--cream-100);
+        border-color: var(--green-900);
+      }
+
+      .kr-menu-panel {
+        opacity: 1;
+        transition: opacity 240ms var(--ease-settle);
+      }
+
+      .kr-menu-panel.is-fading {
+        opacity: 0;
+      }
+
+      .kr-menu-card {
+        background-color: var(--beige-200);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg); /* 16px */
+        padding: 1rem 1rem 1.375rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .kr-menu-thumb {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: 9999px 9999px var(--radius-sm) var(--radius-sm);
+        background-color: var(--cream-100);
+        border: 1px solid var(--border-light);
+      }
+
+      .kr-menu-thumb picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .kr-menu-thumb img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 550ms var(--ease-settle);
+      }
+
+      .kr-menu-card:hover .kr-menu-thumb img {
+        transform: scale(1.03);
+      }
+
+      /* =====================================================================
+         6. SUASANA / GALERI & LIGHTBOX (Full-bleed absolute img fix)
+         ===================================================================== */
+      .kr-gallery-tile {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 0;
+        cursor: pointer;
+        overflow: hidden;
+        background-color: var(--green-700);
+        border: 1px solid var(--border-dark);
+        text-align: left;
+      }
+
+      .kr-gallery-tile--rect {
+        border-radius: var(--radius-lg);
+      }
+
+      .kr-gallery-tile--arch {
+        border-radius: var(--radius-arch);
+      }
+
+      .kr-gallery-tile picture {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .kr-gallery-tile img {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 550ms var(--ease-settle);
+        will-change: transform;
+      }
+
+      .kr-gallery-tile:hover img,
+      .kr-gallery-tile:focus-visible img {
+        transform: scale(1.03);
+      }
+
+      .kr-gallery-caption-scrim {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        z-index: 2;
+        padding: 2.25rem 1.25rem 1rem;
+        background: linear-gradient(
+          to top,
+          rgba(16, 29, 22, 0.9) 0%,
+          rgba(16, 29, 22, 0.48) 55%,
+          transparent 100%
+        );
+        color: var(--cream-100);
+        pointer-events: none;
+      }
+
+      .kr-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        background-color: rgba(14, 26, 20, 0.94);
+        backdrop-filter: blur(6px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1.25rem var(--container-px) 1.75rem;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 240ms var(--ease-settle),
+          visibility 240ms step-end;
+      }
+
+      .kr-lightbox.is-open {
+        opacity: 1;
+        visibility: visible;
+        transition:
+          opacity 240ms var(--ease-settle),
+          visibility 0s step-start;
+      }
+
+      .kr-lightbox-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-dark);
+        background-color: var(--green-900);
+        color: var(--cream-100);
+        cursor: pointer;
+        flex-shrink: 0;
+        transition:
+          background-color var(--dur-ui) var(--ease-settle),
+          border-color var(--dur-ui) var(--ease-settle);
+      }
+
+      .kr-lightbox-btn:hover {
+        background-color: var(--green-700);
+        border-color: var(--gold-500);
+      }
+
+      /* =====================================================================
+         7. BUKTI SOSIAL (ULASAN)
+         ===================================================================== */
+      .kr-review-card {
+        background-color: var(--cream-100);
+        border: 1px solid rgba(179, 154, 110, 0.42);
+        border-radius: var(--radius-lg); /* 16px */
+        padding: clamp(1.5rem, 2.5vw, 2rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+
+      .kr-avatar-initials {
+        width: 44px;
+        height: 44px;
+        border-radius: 9999px;
+        background-color: var(--green-900);
+        color: var(--cream-100);
+        border: 1.5px solid var(--gold-500);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        font-weight: 500;
+        flex-shrink: 0;
+      }
+
+      /* =====================================================================
+         8. LOKASI & PETA STYLISH
+         ===================================================================== */
+      .kr-map-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-lg); /* 16px */
+        background-color: var(--beige-200);
+        border: 1px solid rgba(179, 154, 110, 0.5);
+        min-height: 22rem;
+      }
+
+      /* =====================================================================
+         9. CTA AKHIR ARCH ORNAMENT
+         ===================================================================== */
+      .kr-cta-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* =====================================================================
+         SCROLL REVEAL ANIMATION
+         ===================================================================== */
+      .kr-reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity var(--dur-reveal) var(--ease-settle),
+          transform var(--dur-reveal) var(--ease-settle);
+        will-change: opacity, transform;
+      }
+
+      .kr-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .kr-reveal[data-delay="1"] {
+        transition-delay: 80ms;
+      }
+      .kr-reveal[data-delay="2"] {
+        transition-delay: 160ms;
+      }
+      .kr-reveal[data-delay="3"] {
+        transition-delay: 240ms;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .kr-reveal,
+        .kr-mobile-panel,
+        .kr-menu-panel,
+        .kr-lightbox {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .kr-navbar,
+        .kr-navbar-inner,
+        .kr-navbar-logo,
+        .kr-arch-frame img,
+        .kr-menu-thumb img,
+        .kr-gallery-tile img,
+        .kr-btn,
+        .kr-tab,
+        .kr-nav-link,
+        .kr-nav-link::after,
+        .kr-feature-card,
+        .kr-feature-card::after {
+          transition: none;
+        }
+        .kr-feature-card:hover,
+        .kr-gallery-tile:hover img,
+        .kr-menu-card:hover .kr-menu-thumb img {
+          transform: none;
+        }
+      }
+
+      /* Surface & Helpers */
+      .kr-surface-dark {
+        background-color: var(--green-900);
+        color: var(--cream-100);
+      }
+
+      .kr-surface-cream {
+        background-color: var(--cream-100);
+        color: var(--espresso-900);
+      }
+
+      .kr-surface-beige {
+        background-color: var(--beige-200);
+        color: var(--espresso-900);
+      }
+
+      .kr-card-beige {
+        background-color: var(--beige-200);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+      }
+
+      /* Native Dialog Styling */
+      dialog.kr-dialog {
+        margin: auto;
+        padding: 0;
+        border: 1px solid var(--border-dark);
+        border-radius: var(--radius-md);
+        background-color: var(--green-900);
+        color: var(--cream-100);
+        max-width: 28rem;
+        width: calc(100% - 2rem);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+      }
+
+      dialog.kr-dialog::backdrop {
+        background-color: rgba(15, 28, 21, 0.72);
+        backdrop-filter: blur(4px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =====================================================================
+         1. NAVBAR (Sticky, latar --green-900, menyusut ke ~72px setelah scroll > 40px)
+         ===================================================================== -->
+    <header id="navbar" class="kr-navbar">
+      <div class="kr-container kr-navbar-inner">
+        <!-- Kiri: Logo transparan langsung di atas --green-900 tanpa kotak/latar -->
+        <a
+          href="#hero"
+          class="inline-flex items-center shrink-0 rounded-sm"
+          aria-label="Beranda Kopi Ruang"
+        >
+          <img
+            src="assets/logo.png"
+            alt="Logo Kopi Ruang Specialty Shop"
+            width="1020"
+            height="1032"
+            decoding="async"
+            class="kr-navbar-logo"
+          />
+        </a>
+
+        <!-- Tengah (Desktop): 5 Link Navigasi -->
+        <nav
+          aria-label="Navigasi utama"
+          class="hidden md:flex items-center gap-7"
+        >
+          <a href="#tentang" class="kr-nav-link">Tentang</a>
+          <a href="#keunggulan" class="kr-nav-link">Keunggulan</a>
+          <a href="#menu" class="kr-nav-link">Menu</a>
+          <a href="#galeri" class="kr-nav-link">Galeri</a>
+          <a href="#lokasi" class="kr-nav-link">Lokasi</a>
+        </nav>
+
+        <!-- Kanan: Tombol Primary (Desktop) + Tombol Hamburger (Mobile) -->
+        <div class="flex items-center gap-3 shrink-0">
+          <button
+            type="button"
+            data-open-order
+            class="hidden md:inline-flex kr-btn kr-btn-primary kr-btn-sm"
+          >
+            Pesan Online
+          </button>
+
+          <button
+            type="button"
+            id="mobile-menu-open"
+            class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-md border transition-colors cursor-pointer"
+            style="
+              border-color: var(--border-dark);
+              color: var(--cream-100);
+              background-color: transparent;
+            "
+            aria-label="Buka menu navigasi"
+            aria-expanded="false"
+            aria-controls="mobile-menu-panel"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="17" x2="20" y2="17" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Full-Screen Panel -->
+    <div
+      id="mobile-menu-panel"
+      class="kr-mobile-panel md:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu navigasi mobile"
+      aria-hidden="true"
+    >
+      <div class="flex items-center justify-between">
+        <a
+          href="#hero"
+          class="inline-flex items-center shrink-0 mobile-nav-item"
+          aria-label="Beranda Kopi Ruang"
+        >
+          <img
+            src="assets/logo.png"
+            alt="Logo Kopi Ruang Specialty Shop"
+            width="1020"
+            height="1032"
+            loading="lazy"
+            decoding="async"
+            class="h-12 w-auto block"
+          />
+        </a>
+
+        <button
+          type="button"
+          id="mobile-menu-close"
+          class="inline-flex items-center justify-center w-11 h-11 rounded-md border cursor-pointer"
+          style="
+            border-color: var(--border-dark);
+            color: var(--cream-100);
+            background-color: transparent;
+          "
+          aria-label="Tutup menu navigasi"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <nav aria-label="Navigasi mobile" class="flex flex-col gap-2 my-auto">
+        <a
+          href="#tentang"
+          class="mobile-nav-item py-3 border-b no-underline flex items-center justify-between"
+          style="
+            font-family: var(--font-serif);
+            font-size: 1.625rem;
+            color: var(--cream-100);
+            border-color: var(--border-dark);
+          "
+        >
+          <span>Tentang</span>
+          <span style="color: var(--gold-500);" aria-hidden="true">&rarr;</span>
+        </a>
+        <a
+          href="#keunggulan"
+          class="mobile-nav-item py-3 border-b no-underline flex items-center justify-between"
+          style="
+            font-family: var(--font-serif);
+            font-size: 1.625rem;
+            color: var(--cream-100);
+            border-color: var(--border-dark);
+          "
+        >
+          <span>Keunggulan</span>
+          <span style="color: var(--gold-500);" aria-hidden="true">&rarr;</span>
+        </a>
+        <a
+          href="#menu"
+          class="mobile-nav-item py-3 border-b no-underline flex items-center justify-between"
+          style="
+            font-family: var(--font-serif);
+            font-size: 1.625rem;
+            color: var(--cream-100);
+            border-color: var(--border-dark);
+          "
+        >
+          <span>Menu</span>
+          <span style="color: var(--gold-500);" aria-hidden="true">&rarr;</span>
+        </a>
+        <a
+          href="#galeri"
+          class="mobile-nav-item py-3 border-b no-underline flex items-center justify-between"
+          style="
+            font-family: var(--font-serif);
+            font-size: 1.625rem;
+            color: var(--cream-100);
+            border-color: var(--border-dark);
+          "
+        >
+          <span>Galeri</span>
+          <span style="color: var(--gold-500);" aria-hidden="true">&rarr;</span>
+        </a>
+        <a
+          href="#lokasi"
+          class="mobile-nav-item py-3 border-b no-underline flex items-center justify-between"
+          style="
+            font-family: var(--font-serif);
+            font-size: 1.625rem;
+            color: var(--cream-100);
+            border-color: var(--border-dark);
+          "
+        >
+          <span>Lokasi</span>
+          <span style="color: var(--gold-500);" aria-hidden="true">&rarr;</span>
+        </a>
+      </nav>
+
+      <div class="pt-4">
+        <button
+          type="button"
+          data-open-order
+          class="kr-btn kr-btn-primary w-full"
+        >
+          Pesan Online
+        </button>
+      </div>
+    </div>
+
+    <main>
+      <!-- ===================================================================
+           2. HERO SECTION (Latar --green-900, 2 Kolom 55%/45% Desktop >= 1024px)
+           =================================================================== -->
+      <section
+        id="hero"
+        class="kr-surface-dark kr-hero"
+        aria-labelledby="hero-heading"
+      >
+        <div class="kr-container">
+          <div class="kr-hero-grid">
+            <!-- Sisi Kiri (55% di desktop, pertama di mobile) -->
+            <div>
+              <div class="kr-section-heading kr-reveal">
+                <span class="kr-kicker">Specialty Coffee Shop</span>
+                <h1
+                  id="hero-heading"
+                  class="kr-h1 kr-hero-headline"
+                  style="color: var(--cream-100);"
+                >
+                  Ruang untuk Fokus, Ruang untuk Bercerita.
+                </h1>
+              </div>
+
+              <p
+                class="kr-body-lg mt-5 max-w-lg kr-reveal"
+                data-delay="1"
+                style="color: var(--text-muted-dark);"
+              >
+                Specialty coffee dari biji lokal pilihan, dalam suasana yang
+                nyaman untuk bekerja dan berkumpul.
+              </p>
+
+              <!-- Tombol Aksi -->
+              <div
+                class="mt-7 flex flex-wrap items-center gap-4 kr-reveal"
+                data-delay="2"
+              >
+                <button
+                  type="button"
+                  data-open-order
+                  class="kr-btn kr-btn-primary"
+                >
+                  Pesan Online
+                </button>
+                <a href="#lokasi" class="kr-btn kr-btn-secondary">
+                  Kunjungi Kami
+                </a>
+              </div>
+
+              <!-- Tiga Info Kecil dengan Ikon Garis -->
+              <div
+                class="mt-8 pt-6 border-t flex flex-wrap items-center gap-x-7 gap-y-3 kr-reveal"
+                data-delay="3"
+                style="border-color: var(--border-dark);"
+              >
+                <div class="inline-flex items-center gap-2.5">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--gold-500)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                    <line x1="12" y1="20" x2="12.01" y2="20" />
+                  </svg>
+                  <span class="kr-caption font-medium" style="color: var(--cream-100);">
+                    WiFi Cepat
+                  </span>
+                </div>
+
+                <div class="inline-flex items-center gap-2.5">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--gold-500)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                  </svg>
+                  <span class="kr-caption font-medium" style="color: var(--cream-100);">
+                    Biji Kopi Lokal
+                  </span>
+                </div>
+
+                <div class="inline-flex items-center gap-2.5">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--gold-500)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <span class="kr-caption font-medium" style="color: var(--cream-100);">
+                    4.8&#9733; Google
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sisi Kanan (45% di desktop, kedua di mobile): Bingkai Arch + Ornamen Outline Emas -->
+            <div class="kr-reveal" data-delay="2">
+              <div class="kr-arch-showcase pr-3 pb-3 sm:pr-4 sm:pb-4">
+                <div class="kr-arch-outline-offset" aria-hidden="true"></div>
+                <div class="kr-arch-frame aspect-[3/4]">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/hero-pour-over.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/hero-pour-over.jpg"
+                      alt="Seduhan manual pour-over dengan dripper dan cangkir keramik putih di atas meja batu travertine berlatar tanaman hijau yang tenang"
+                      width="896"
+                      height="1200"
+                      fetchpriority="high"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           3. TENTANG KAMI (id="tentang", latar --cream-100)
+           =================================================================== -->
+      <section
+        id="tentang"
+        class="kr-surface-cream py-16 md:py-24 scroll-mt-20"
+        aria-labelledby="tentang-heading"
+      >
+        <div class="kr-container">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <!-- Kiri: Bingkai Arch Foto Suasana Café -->
+            <div class="lg:col-span-5 kr-reveal">
+              <div class="kr-arch-frame aspect-[3/4] max-w-[26rem] mx-auto lg:mx-0">
+                <picture>
+                  <!-- Siap WebP: <source srcset="/src/assets/images/tentang-interior-cafe.webp" type="image/webp" /> -->
+                  <img
+                    src="/src/assets/images/tentang-interior-cafe.jpg"
+                    alt="Suasana interior Kopi Ruang yang hangat dengan lengkungan arsitektur, dinding krem, kursi beludru hijau tua, dan meja kayu oak"
+                    width="896"
+                    height="1200"
+                    loading="lazy"
+                    decoding="async"
+                    referrerpolicy="no-referrer"
+                  />
+                </picture>
+              </div>
+            </div>
+
+            <!-- Kanan: Teks (jarak 1rem antar paragraf, kontras WCAG AA) & 3 Angka Ringkas -->
+            <div class="lg:col-span-7">
+              <div class="kr-section-heading kr-reveal">
+                <span class="kr-kicker">Tentang Kami</span>
+                <h2
+                  id="tentang-heading"
+                  class="kr-h2"
+                  style="color: var(--espresso-900);"
+                >
+                  Lebih dari Sekadar Secangkir Kopi
+                </h2>
+                <div class="kr-heading-rule" aria-hidden="true"></div>
+              </div>
+
+              <div
+                class="mt-6 flex flex-col gap-4 max-w-2xl kr-reveal"
+                data-delay="1"
+              >
+                <p class="kr-body-lg m-0" style="color: var(--espresso-900);">
+                  Kopi Ruang adalah specialty coffee shop yang mengutamakan
+                  kualitas rasa dari biji kopi lokal pilihan, dengan ruang yang
+                  dirancang nyaman untuk bekerja maupun berkumpul.
+                </p>
+                <p class="kr-body m-0" style="color: var(--text-muted-light);">
+                  Mulai dari racikan espresso klasik dan seduhan manual brew yang
+                  terukur, hingga signature drinks menyegarkan dan homemade pastries
+                  hangat setiap hari, setiap sajian dibuat untuk menemani momenmu
+                  tanpa terburu-buru.
+                </p>
+              </div>
+
+              <!-- Tiga Angka Ringkas -->
+              <div
+                class="mt-10 pt-8 border-t grid grid-cols-1 sm:grid-cols-3 gap-6 kr-reveal"
+                data-delay="2"
+                style="border-color: var(--border-light);"
+              >
+                <div>
+                  <div
+                    class="kr-h3"
+                    style="color: var(--gold-700); font-variant-numeric: tabular-nums;"
+                  >
+                    200+
+                  </div>
+                  <div class="kr-caption mt-1" style="color: var(--espresso-900);">
+                    pelanggan setiap hari
+                  </div>
+                </div>
+
+                <div>
+                  <div
+                    class="kr-h3"
+                    style="color: var(--gold-700); font-variant-numeric: tabular-nums;"
+                  >
+                    4.8&#9733;
+                  </div>
+                  <div class="kr-caption mt-1" style="color: var(--espresso-900);">
+                    rating Google
+                  </div>
+                </div>
+
+                <div>
+                  <div
+                    class="kr-h3"
+                    style="color: var(--gold-700); font-variant-numeric: tabular-nums;"
+                  >
+                    100%
+                  </div>
+                  <div class="kr-caption mt-1" style="color: var(--espresso-900);">
+                    biji kopi lokal
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           4. KEUNGGULAN (id="keunggulan", latar --beige-200)
+           =================================================================== -->
+      <section
+        id="keunggulan"
+        class="kr-surface-beige py-16 md:py-24 scroll-mt-20"
+        aria-labelledby="keunggulan-heading"
+      >
+        <div class="kr-container">
+          <div class="kr-section-heading max-w-2xl kr-reveal">
+            <span class="kr-kicker">Keunggulan</span>
+            <h2
+              id="keunggulan-heading"
+              class="kr-h2"
+              style="color: var(--espresso-900);"
+            >
+              Alasan Kamu Betah di Kopi Ruang
+            </h2>
+            <div class="kr-heading-rule" aria-hidden="true"></div>
+          </div>
+
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <article class="kr-feature-card kr-reveal">
+              <div class="mb-5" aria-hidden="true">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--gold-700)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                </svg>
+              </div>
+              <h3 class="kr-h4" style="color: var(--espresso-900);">
+                Biji Kopi Lokal Berkualitas
+              </h3>
+              <p class="kr-body mt-3 mb-0" style="color: var(--text-muted-light);">
+                Dipilih langsung dari petani kopi Nusantara terbaik dan disangrai
+                dalam batch kecil agar karakter rasanya selalu segar dan konsisten.
+              </p>
+            </article>
+
+            <article class="kr-feature-card kr-reveal" data-delay="1">
+              <div class="mb-5" aria-hidden="true">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--gold-700)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                  <line x1="12" y1="20" x2="12.01" y2="20" />
+                </svg>
+              </div>
+              <h3 class="kr-h4" style="color: var(--espresso-900);">
+                Nyaman &amp; WiFi Cepat
+              </h3>
+              <p class="kr-body mt-3 mb-0" style="color: var(--text-muted-light);">
+                Koneksi internet stabil, stopkontak yang mudah dijangkau di setiap
+                meja, serta pencahayaan hangat untuk kerja fokus lebih lama.
+              </p>
+            </article>
+
+            <article class="kr-feature-card kr-reveal" data-delay="2">
+              <div class="mb-5" aria-hidden="true">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--gold-700)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 20V11a7 7 0 0 1 14 0v9" />
+                  <line x1="3" y1="20" x2="21" y2="20" />
+                  <path d="M9.5 20v-7.5a2.5 2.5 0 0 1 5 0V20" />
+                </svg>
+              </div>
+              <h3 class="kr-h4" style="color: var(--espresso-900);">
+                Desain Minimal &amp; Estetik
+              </h3>
+              <p class="kr-body mt-3 mb-0" style="color: var(--text-muted-light);">
+                Sentuhan arsitektur lengkung arch, warna alami yang menenangkan,
+                dan tata meja lega yang akrab untuk berdiskusi santai.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           5. MENU UNGGULAN (id="menu", latar --cream-100)
+           =================================================================== -->
+      <section
+        id="menu"
+        class="kr-surface-cream py-16 md:py-24 scroll-mt-20"
+        aria-labelledby="menu-heading"
+      >
+        <div class="kr-container">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 kr-reveal">
+            <div class="kr-section-heading">
+              <span class="kr-kicker">Menu Unggulan</span>
+              <h2
+                id="menu-heading"
+                class="kr-h2"
+                style="color: var(--espresso-900);"
+              >
+                Racikan Favorit Kopi Ruang
+              </h2>
+              <div class="kr-heading-rule" aria-hidden="true"></div>
+            </div>
+
+            <div
+              role="tablist"
+              aria-label="Kategori menu Kopi Ruang"
+              class="flex flex-wrap items-center gap-2.5"
+            >
+              <button
+                type="button"
+                role="tab"
+                id="tab-coffee"
+                aria-selected="true"
+                aria-controls="panel-coffee"
+                tabindex="0"
+                class="kr-tab"
+                data-tab-target="coffee"
+              >
+                Coffee
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="tab-signature"
+                aria-selected="false"
+                aria-controls="panel-signature"
+                tabindex="-1"
+                class="kr-tab"
+                data-tab-target="signature"
+              >
+                Signature Drinks
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="tab-pastry"
+                aria-selected="false"
+                aria-controls="panel-pastry"
+                tabindex="-1"
+                class="kr-tab"
+                data-tab-target="pastry"
+              >
+                Pastry
+              </button>
+            </div>
+          </div>
+
+          <!-- Panel 1: Coffee -->
+          <div
+            id="panel-coffee"
+            role="tabpanel"
+            aria-labelledby="tab-coffee"
+            class="kr-menu-panel mt-10"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-espresso.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-espresso.jpg"
+                      alt="Secangkir espresso dengan crema keemasan dalam cangkir keramik hijau tua"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Espresso</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp22.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Ekstraksi single shot pekat dari biji lokal pilihan dengan crema keemasan.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-americano.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-americano.jpg"
+                      alt="Secangkir kopi hitam Americano panas dalam cangkir keramik gelap di atas meja batu travertine"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Americano</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp25.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Paduan espresso house blend dan air panas dengan akhir rasa yang bersih.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-cafe-latte.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-cafe-latte.jpg"
+                      alt="Café Latte hangat dengan latte art halus dalam cangkir keramik krem"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Café Latte</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp32.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Espresso seimbang berpadu steamed milk lembut dan microfoam tipis.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/hero-pour-over.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/hero-pour-over.jpg"
+                      alt="Seduhan manual V60 Single Origin menggunakan dripper keramik putih"
+                      width="896"
+                      height="1200"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">V60 Single Origin</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp35.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Seduhan manual pour-over yang menonjolkan karakter floral biji Nusantara.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Panel 2: Signature Drinks -->
+          <div
+            id="panel-signature"
+            role="tabpanel"
+            aria-labelledby="tab-signature"
+            class="kr-menu-panel mt-10"
+            hidden
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-signature-dingin.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-signature-dingin.jpg"
+                      alt="Kopi Ruang Latte dingin dalam gelas tinggi beralur di atas batu travertine"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Kopi Ruang Latte</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp36.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Racikan andalan espresso, gula aren organik, susu lembut, dan sedikit garam laut.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-signature-dingin.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-signature-dingin.jpg"
+                      alt="Pandan Cold Brew dingin beraroma pandan alami di meja batu hangat"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Pandan Cold Brew</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp34.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Cold brew seduh dingin 16 jam dengan infusi pandan wangi yang menyegarkan.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-signature-dingin.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-signature-dingin.jpg"
+                      alt="Es Kopi Gula Aren dingin dengan lapisan espresso dan susu segar"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Es Kopi Gula Aren</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp30.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Kopi susu dingin favorit harian dengan manis alami gula aren pilihan.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-cafe-latte.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-cafe-latte.jpg"
+                      alt="Oat Honey Cappuccino hangat dengan busa susu lembut di cangkir keramik"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Oat Honey Cappuccino</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp38.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Perpaduan espresso, susu oat creamy, dan manis lembut madu hutan.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Panel 3: Pastry -->
+          <div
+            id="panel-pastry"
+            role="tabpanel"
+            aria-labelledby="tab-pastry"
+            class="kr-menu-panel mt-10"
+            hidden
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-pastry.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-pastry.jpg"
+                      alt="Butter Croissant keemasan berlapis renyah di atas piring keramik"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Butter Croissant</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp28.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Croissant renyah berlapis dengan aroma mentega murni yang dipanggang tiap pagi.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-pastry.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-pastry.jpg"
+                      alt="Almond Croissant dengan taburan irisan almond panggang di meja kayu oak"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Almond Croissant</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp32.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Croissant panggang berisi krim almond manis dengan taburan kacang almond renyah.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-pastry.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-pastry.jpg"
+                      alt="Potongan Banana Bread rumahan hangat di atas piring keramik krem"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Banana Bread</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp26.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Kue pisang panggang rumahan bertekstur lembut dengan kenari dan kayu manis.
+                </p>
+              </article>
+
+              <article class="kr-menu-card">
+                <div class="kr-menu-thumb">
+                  <picture>
+                    <!-- Siap WebP: <source srcset="/src/assets/images/menu-pastry.webp" type="image/webp" /> -->
+                    <img
+                      src="/src/assets/images/menu-pastry.jpg"
+                      alt="Sajian pastry hangat Kopi Ruang pendamping kopi di pagi hari"
+                      width="1200"
+                      height="896"
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                  </picture>
+                </div>
+                <div class="mt-4 flex items-baseline justify-between gap-3">
+                  <h3 class="kr-h4" style="color: var(--espresso-900);">Choco Chip Cookie</h3>
+                  <span
+                    class="shrink-0"
+                    style="
+                      color: var(--gold-700);
+                      font-size: 1.125rem;
+                      font-weight: 600;
+                      font-variant-numeric: tabular-nums;
+                    "
+                  >
+                    Rp20.000
+                  </span>
+                </div>
+                <p class="kr-body mt-2 mb-0" style="color: var(--text-muted-light);">
+                  Kukis panggang lembut di tengah dengan lelehan cokelat hitam dan garam laut.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <!-- CTA Bawah Grid Menu -->
+          <div class="mt-10 flex justify-center sm:justify-start kr-reveal">
+            <button
+              type="button"
+              data-open-order
+              class="kr-btn kr-btn-primary"
+            >
+              Pesan Online
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           6. SUASANA / GALERI (id="galeri", latar --green-900, .kr-surface-dark)
+           =================================================================== -->
+      <section
+        id="galeri"
+        class="kr-surface-dark py-16 md:py-24 scroll-mt-20"
+        aria-labelledby="galeri-heading"
+      >
+        <div class="kr-container">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 kr-reveal">
+            <div class="kr-section-heading">
+              <span class="kr-kicker">Suasana</span>
+              <h2
+                id="galeri-heading"
+                class="kr-h2"
+                style="color: var(--cream-100);"
+              >
+                Ruang yang Bikin Betah
+              </h2>
+              <div class="kr-heading-rule" aria-hidden="true"></div>
+            </div>
+
+            <p class="kr-body max-w-md m-0" style="color: var(--text-muted-dark);">
+              Klik foto untuk melihat detail suasana ruang kerja, bar seduh, dan
+              sudut tenang di Kopi Ruang.
+            </p>
+          </div>
+
+          <!-- Grid Asimetris 6 Foto (position relative + img absolute inset-0) -->
+          <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-6">
+            <button
+              type="button"
+              class="kr-gallery-tile kr-gallery-tile--arch lg:col-span-5 h-72 sm:h-80 lg:h-[340px] kr-reveal"
+              data-lightbox-index="0"
+              aria-label="Perbesar foto: Interior utama dengan lengkungan arch dan sofa hijau tua"
+            >
+              <picture>
+                <!-- Siap WebP: <source srcset="/src/assets/images/tentang-interior-cafe.webp" type="image/webp" /> -->
+                <img
+                  src="/src/assets/images/tentang-interior-cafe.jpg"
+                  alt="Interior Kopi Ruang dengan dinding plaster krem, lengkungan arch, dan kursi beludru hijau tua"
+                  width="896"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+              </picture>
+              <div class="kr-gallery-caption-scrim">
+                <div class="kr-caption font-medium">Interior Café</div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              class="kr-gallery-tile kr-gallery-tile--rect lg:col-span-4 h-72 sm:h-80 lg:h-[340px] kr-reveal"
+              data-delay="1"
+              data-lightbox-index="1"
+              aria-label="Perbesar foto: Sudut meja kerja nyaman dengan laptop dan secangkir latte"
+            >
+              <picture>
+                <!-- Siap WebP: <source srcset="/src/assets/images/galeri-meja-kerja.webp" type="image/webp" /> -->
+                <img
+                  src="/src/assets/images/galeri-meja-kerja.jpg"
+                  alt="Meja kayu oak di sudut tenang Kopi Ruang lengkap dengan laptop, buku catatan, dan secangkir kopi"
+                  width="896"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+              </picture>
+              <div class="kr-gallery-caption-scrim">
+                <div class="kr-caption font-medium">Sudut Kerja Fokus</div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              class="kr-gallery-tile kr-gallery-tile--arch lg:col-span-3 h-72 sm:h-80 lg:h-[340px] kr-reveal"
+              data-delay="2"
+              data-lightbox-index="2"
+              aria-label="Perbesar foto: Bar seduh Kopi Ruang berpanel kayu hijau tua dan batu travertine"
+            >
+              <picture>
+                <!-- Siap WebP: <source srcset="/src/assets/images/galeri-bar-seduh.webp" type="image/webp" /> -->
+                <img
+                  src="/src/assets/images/galeri-bar-seduh.jpg"
+                  alt="Bar kopi Kopi Ruang dengan meja batu travertine, panel kayu hijau tua, mesin espresso, dan tanaman pot"
+                  width="1200"
+                  height="896"
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+              </picture>
+              <div class="kr-gallery-caption-scrim">
+                <div class="kr-caption font-medium">Bar Seduh</div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              class="kr-gallery-tile kr-gallery-tile--rect lg:col-span-4 h-72 lg:h-[300px] kr-reveal"
+              data-lightbox-index="3"
+              aria-label="Perbesar foto: Aneka homemade pastries hangat di atas piring keramik"
+            >
+              <picture>
+                <!-- Siap WebP: <source srcset="/src/assets/images/menu-pastry.webp" type="image/webp" /> -->
+                <img
+                  src="/src/assets/images/menu-pastry.jpg"
+                  alt="Croissant mentega, almond croissant, dan banana bread panggang di atas piring keramik krem"
+                  width="1200"
+                  height="896"
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+              </picture>
+              <div class="kr-gallery-caption-scrim">
+                <div class="kr-caption font-medium">Homemade Pastries</div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              class="kr-gallery-tile kr-gallery-tile--arch lg:col-span-3 h-72 lg:h-[300px] kr-reveal"
+              data-delay="1"
+              data-lightbox-index="4"
+              aria-label="Perbesar foto: Detail tanaman hijau dan seduhan manual pour-over di pagi hari"
+            >
+              <picture>
+                <!-- Siap WebP: <source srcset="/src/assets/images/hero-pour-over.webp" type="image/webp" /> -->
+                <img
+                  src="/src/assets/images/hero-pour-over.jpg"
+                  alt="Detail tanaman hijau segar di dekat meja batu travertine dengan seduhan pour-over"
+                  width="896"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+              </picture>
+              <div class="kr-gallery-caption-scrim">
+                <div class="kr-caption font-medium">Detail Tanaman &amp; Seduh</div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              class="kr-gallery-tile kr-gallery-tile--rect lg:col-span-5 h-72 lg:h-[300px] kr-reveal"
+              data-delay="2"
+              data-lightbox-index="5"
+              aria-label="Perbesar foto: Cangkir keramik hijau tua berisi espresso dengan crema hangat"
+            >
+              <picture>
+                <!-- Siap WebP: <source srcset="/src/assets/images/menu-espresso.webp" type="image/webp" /> -->
+                <img
+                  src="/src/assets/images/menu-espresso.jpg"
+                  alt="Cangkir espresso matte hijau tua dengan sendok kuningan di atas kain linen krem"
+                  width="1200"
+                  height="896"
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+              </picture>
+              <div class="kr-gallery-caption-scrim">
+                <div class="kr-caption font-medium">Cangkir &amp; Tekstur</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           7. BUKTI SOSIAL (id="ulasan", latar --beige-200)
+           =================================================================== -->
+      <section
+        id="ulasan"
+        class="kr-surface-beige py-16 md:py-24 scroll-mt-20"
+        aria-labelledby="ulasan-heading"
+      >
+        <div class="kr-container">
+          <div class="kr-section-heading max-w-2xl kr-reveal">
+            <span class="kr-kicker">Ulasan</span>
+            <h2
+              id="ulasan-heading"
+              class="kr-h2"
+              style="color: var(--espresso-900);"
+            >
+              Kata Mereka tentang Kopi Ruang
+            </h2>
+            <div class="kr-heading-rule" aria-hidden="true"></div>
+          </div>
+
+          <!-- Baris Statistik Besar -->
+          <div
+            class="mt-10 py-8 border-y grid grid-cols-1 sm:grid-cols-3 gap-8 kr-reveal"
+            data-delay="1"
+            style="border-color: var(--border-light);"
+          >
+            <div>
+              <div
+                class="kr-h2"
+                style="color: var(--gold-700); font-variant-numeric: tabular-nums;"
+              >
+                4.8&#9733;
+              </div>
+              <div class="kr-body mt-1 font-medium" style="color: var(--espresso-900);">
+                rating Google
+              </div>
+            </div>
+
+            <div>
+              <div
+                class="kr-h2"
+                style="color: var(--gold-700); font-variant-numeric: tabular-nums;"
+              >
+                200+
+              </div>
+              <div class="kr-body mt-1 font-medium" style="color: var(--espresso-900);">
+                pelanggan per hari
+              </div>
+            </div>
+
+            <div>
+              <div
+                class="kr-h2"
+                style="color: var(--gold-700); font-variant-numeric: tabular-nums;"
+              >
+                1.000+
+              </div>
+              <div class="kr-body mt-1 font-medium" style="color: var(--espresso-900);">
+                cangkir signature terjual tiap bulan
+              </div>
+            </div>
+          </div>
+
+          <!-- Tiga Kartu Testimoni -->
+          <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <article class="kr-review-card kr-reveal">
+              <p class="kr-body m-0" style="color: var(--espresso-900);">
+                &ldquo;WiFi-nya kencang dan stabil buat meeting online seharian.
+                Colokan ada di tiap meja, pencahayaan hangat, dan Kopi Ruang
+                Latte-nya selalu pas manisnya.&rdquo;
+              </p>
+              <div class="flex items-center gap-3.5 pt-4 border-t" style="border-color: var(--border-light);">
+                <div class="kr-avatar-initials" aria-hidden="true">NR</div>
+                <div>
+                  <div class="kr-body font-semibold" style="color: var(--espresso-900);">
+                    Nadia
+                  </div>
+                  <div class="kr-caption" style="color: var(--text-muted-light);">
+                    Remote Worker
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="kr-review-card kr-reveal" data-delay="1">
+              <p class="kr-body m-0" style="color: var(--espresso-900);">
+                &ldquo;Favoritku kalau lagi ngerjain skripsi. Biji kopi lokal di
+                V60-nya terasa clean banget, tidak pahit berlebih, dan butter
+                croissant-nya renyah saat masih hangat.&rdquo;
+              </p>
+              <div class="flex items-center gap-3.5 pt-4 border-t" style="border-color: var(--border-light);">
+                <div class="kr-avatar-initials" aria-hidden="true">RK</div>
+                <div>
+                  <div class="kr-body font-semibold" style="color: var(--espresso-900);">
+                    Raka
+                  </div>
+                  <div class="kr-caption" style="color: var(--text-muted-light);">
+                    Mahasiswa
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="kr-review-card kr-reveal" data-delay="2">
+              <p class="kr-body m-0" style="color: var(--espresso-900);">
+                &ldquo;Suasananya tenang tanpa musik yang terlalu keras. Jarak
+                antar meja lega, cocok buat fokus desain atau ketemu klien di
+                sore hari.&rdquo;
+              </p>
+              <div class="flex items-center gap-3.5 pt-4 border-t" style="border-color: var(--border-light);">
+                <div class="kr-avatar-initials" aria-hidden="true">BM</div>
+                <div>
+                  <div class="kr-body font-semibold" style="color: var(--espresso-900);">
+                    Bima
+                  </div>
+                  <div class="kr-caption" style="color: var(--text-muted-light);">
+                    Freelancer
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <p class="kr-caption mt-6 mb-0" style="color: var(--text-muted-light);">
+            Testimoni ilustrasi untuk keperluan proyek konsep
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           8. LOKASI & JAM BUKA (id="lokasi", latar --cream-100)
+           =================================================================== -->
+      <section
+        id="lokasi"
+        class="kr-surface-cream py-16 md:py-24 scroll-mt-20"
+        aria-labelledby="lokasi-heading"
+      >
+        <div class="kr-container">
+          <div class="kr-section-heading max-w-2xl kr-reveal">
+            <span class="kr-kicker">Lokasi</span>
+            <h2
+              id="lokasi-heading"
+              class="kr-h2"
+              style="color: var(--espresso-900);"
+            >
+              Mampir ke Kopi Ruang
+            </h2>
+            <div class="kr-heading-rule" aria-hidden="true"></div>
+          </div>
+
+          <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+            <!-- Kiri: Peta Bergaya Minimalis dengan Pin Emas (Radius 16px) -->
+            <div class="lg:col-span-6 kr-reveal">
+              <div
+                class="kr-map-card h-full flex flex-col justify-between p-6"
+                role="region"
+                aria-label="Peta ilustrasi lokasi Kopi Ruang di Jl. Kopi Ruang No. 12, Jakarta Selatan"
+              >
+                <!-- SVG Stylized Street Map -->
+                <svg
+                  viewBox="0 0 600 420"
+                  class="absolute inset-0 w-full h-full object-cover"
+                  preserveAspectRatio="xMidYMid slice"
+                  aria-hidden="true"
+                >
+                  <rect width="600" height="420" fill="#E8DCC4" />
+                  <!-- Blok bangunan lembut -->
+                  <rect x="34" y="34" width="142" height="106" rx="10" fill="#EFE6D3" />
+                  <rect x="208" y="34" width="168" height="106" rx="10" fill="#EFE6D3" />
+                  <rect x="408" y="34" width="158" height="106" rx="10" fill="#EFE6D3" />
+                  <rect x="34" y="176" width="142" height="104" rx="10" fill="#EFE6D3" />
+                  <rect x="208" y="176" width="168" height="104" rx="10" fill="#E2D4B7" />
+                  <rect x="408" y="176" width="158" height="104" rx="10" fill="#EFE6D3" />
+                  <rect x="34" y="314" width="234" height="72" rx="10" fill="#EFE6D3" />
+                  <rect x="300" y="314" width="266" height="72" rx="10" fill="#EFE6D3" />
+
+                  <!-- Taman kecil hijau -->
+                  <rect x="424" y="192" width="126" height="72" rx="8" fill="#D5DEC9" />
+
+                  <!-- Garis jalan utama & sekunder -->
+                  <path
+                    d="M0 158 H600 M0 297 H600 M192 0 V420 M392 0 V420"
+                    stroke="#F5EFE3"
+                    stroke-width="14"
+                  />
+                  <path
+                    d="M0 158 H600 M0 297 H600 M192 0 V420 M392 0 V420"
+                    stroke="rgba(122, 96, 53, 0.22)"
+                    stroke-width="1"
+                  />
+
+                  <!-- Jalur lengkung kecil -->
+                  <path
+                    d="M192 158 Q292 128 392 158"
+                    fill="none"
+                    stroke="#F5EFE3"
+                    stroke-width="8"
+                  />
+
+                  <!-- Pin Emas Kopi Ruang -->
+                  <g transform="translate(292, 224)">
+                    <circle cx="0" cy="0" r="34" fill="rgba(179, 154, 110, 0.22)" />
+                    <circle cx="0" cy="0" r="20" fill="rgba(23, 41, 31, 0.16)" />
+                    <path
+                      d="M0 -34 C-13 -34 -22 -24 -22 -11 C-22 6 0 22 0 22 C0 22 22 6 22 -11 C22 -24 13 -34 0 -34 Z"
+                      fill="#17291F"
+                      stroke="#B39A6E"
+                      stroke-width="2.5"
+                    />
+                    <path
+                      d="M-7 -4 V-13 A7 7 0 0 1 7 -13 V-4"
+                      fill="none"
+                      stroke="#B39A6E"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                    <line
+                      x1="-9"
+                      y1="-4"
+                      x2="9"
+                      y2="-4"
+                      stroke="#B39A6E"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                </svg>
+
+                <!-- Label Peta di Kiri Atas -->
+                <div class="relative z-10 flex items-center justify-between gap-3">
+                  <div
+                    class="px-3.5 py-2 rounded-lg border"
+                    style="
+                      background-color: var(--cream-100);
+                      border-color: var(--border-light);
+                      color: var(--espresso-900);
+                    "
+                  >
+                    <div class="kr-caption font-semibold" style="color: var(--gold-700);">
+                      Jakarta Selatan
+                    </div>
+                    <div class="kr-caption">Jl. Kopi Ruang No. 12</div>
+                  </div>
+                </div>
+
+                <!-- Label Pin di Bawah -->
+                <div class="relative z-10 mt-auto pt-40 flex justify-end">
+                  <a
+                    href="https://maps.google.com/?q=Jl.+Kopi+Ruang+No.+12+Jakarta+Selatan"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="kr-caption font-medium no-underline px-3.5 py-2 rounded-lg border"
+                    style="
+                      background-color: var(--green-900);
+                      color: var(--cream-100);
+                      border-color: var(--gold-500);
+                    "
+                  >
+                    Buka di Google Maps &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kanan: Kartu Informasi Lokasi & Jam Buka -->
+            <div class="lg:col-span-6 kr-reveal" data-delay="1">
+              <div class="kr-card-beige p-6 sm:p-8 h-full flex flex-col justify-between">
+                <div>
+                  <!-- Indikator Buka Sekarang / Tutup -->
+                  <div
+                    class="pb-5 border-b flex flex-wrap items-center justify-between gap-3"
+                    style="border-color: var(--border-light);"
+                  >
+                    <span class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
+                      Status Operasional
+                    </span>
+                    <div
+                      id="store-status-indicator"
+                      class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border kr-caption font-semibold"
+                      style="
+                        background-color: var(--cream-100);
+                        border-color: var(--green-900);
+                        color: var(--green-900);
+                      "
+                    >
+                      <span id="store-status-text">Memeriksa jam buka...</span>
+                    </div>
+                  </div>
+
+                  <!-- Detail Info -->
+                  <dl class="mt-6 space-y-5 m-0">
+                    <div>
+                      <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
+                        Alamat
+                      </dt>
+                      <dd class="kr-body-lg m-0 mt-1 font-medium" style="color: var(--espresso-900);">
+                        Jl. Kopi Ruang No. 12, Jakarta Selatan
+                      </dd>
+                    </div>
+
+                    <div>
+                      <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
+                        Jam Buka
+                      </dt>
+                      <dd class="kr-body m-0 mt-1 space-y-1" style="color: var(--espresso-900); font-variant-numeric: tabular-nums;">
+                        <div>Senin – Jumat: 08.00 – 22.00 WIB</div>
+                        <div>Sabtu – Minggu: 08.00 – 23.00 WIB</div>
+                      </dd>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
+                          WhatsApp
+                        </dt>
+                        <dd class="kr-body m-0 mt-1" style="color: var(--espresso-900); font-variant-numeric: tabular-nums;">
+                          <a
+                            href="https://wa.me/6281234567890"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="no-underline hover:underline underline-offset-4"
+                            style="color: var(--espresso-900);"
+                          >
+                            +62 812-3456-7890
+                          </a>
+                        </dd>
+                      </div>
+
+                      <div>
+                        <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
+                          Instagram
+                        </dt>
+                        <dd class="kr-body m-0 mt-1" style="color: var(--espresso-900);">
+                          <a
+                            href="https://instagram.com/kopiruang"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="no-underline hover:underline underline-offset-4"
+                            style="color: var(--espresso-900);"
+                          >
+                            @kopiruang
+                          </a>
+                        </dd>
+                      </div>
+                    </div>
+                  </dl>
+                </div>
+
+                <!-- Dua Tombol Aksi -->
+                <div class="mt-8 pt-6 border-t flex flex-wrap items-center gap-4" style="border-color: var(--border-light);">
+                  <a
+                    href="https://maps.google.com/?q=Jl.+Kopi+Ruang+No.+12+Jakarta+Selatan"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="kr-btn kr-btn-primary"
+                  >
+                    Petunjuk Arah
+                  </a>
+                  <a
+                    href="https://wa.me/6281234567890?text=Halo%20Kopi%20Ruang%2C%20saya%20ingin%20bertanya%20seputar%20reservasi%20dan%20menu."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="kr-btn kr-btn-secondary"
+                  >
+                    Chat WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           9. CTA AKHIR (latar --green-900, .kr-surface-dark + ornamen garis arch emas)
+           =================================================================== -->
+      <section
+        class="kr-surface-dark kr-cta-section py-20 md:py-28"
+        aria-labelledby="cta-akhir-heading"
+      >
+        <!-- Ornamen Garis Arch Emas Tipis di Latar -->
+        <svg
+          viewBox="0 0 1200 440"
+          class="absolute inset-0 w-full h-full pointer-events-none"
+          preserveAspectRatio="xMidYMid slice"
+          aria-hidden="true"
+        >
+          <path
+            d="M420 440 V210 C420 110.589 500.589 30 600 30 C699.411 30 780 110.589 780 210 V440"
+            fill="none"
+            stroke="rgba(179, 154, 110, 0.16)"
+            stroke-width="1.5"
+          />
+          <path
+            d="M456 440 V220 C456 140.471 520.471 76 600 76 C679.529 76 744 140.471 744 220 V440"
+            fill="none"
+            stroke="rgba(179, 154, 110, 0.1)"
+            stroke-width="1"
+          />
+        </svg>
+
+        <div class="kr-container relative z-10 text-center max-w-2xl mx-auto">
+          <div class="kr-section-heading kr-section-heading--center kr-reveal">
+            <span class="kr-kicker">Singgah Hari Ini</span>
+            <h2
+              id="cta-akhir-heading"
+              class="kr-h2"
+              style="color: var(--cream-100);"
+            >
+              Siap menemukan ruangmu?
+            </h2>
+            <div class="kr-heading-rule" aria-hidden="true"></div>
+          </div>
+
+          <p
+            class="kr-body-lg mt-5 mx-auto max-w-xl kr-reveal"
+            data-delay="1"
+            style="color: var(--text-muted-dark);"
+          >
+            Datang untuk fokus bekerja, atau singgah sebentar menikmati seduhan
+            biji kopi lokal terbaik kami.
+          </p>
+
+          <div
+            class="mt-8 flex flex-wrap items-center justify-center gap-4 kr-reveal"
+            data-delay="2"
+          >
+            <button
+              type="button"
+              data-open-order
+              class="kr-btn kr-btn-primary"
+            >
+              Pesan Online
+            </button>
+            <a href="#lokasi" class="kr-btn kr-btn-secondary">
+              Kunjungi Kami
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================================================================
+         10. FOOTER (latar --green-900, pemisah garis emas tipis)
+         =================================================================== -->
+    <footer
+      class="kr-surface-dark border-t"
+      style="border-color: rgba(179, 154, 110, 0.35);"
+    >
+      <div class="kr-container py-14 md:py-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
+          <!-- Kolom 1: Logo + Tagline Singkat -->
+          <div class="lg:col-span-4">
+            <a href="#hero" class="inline-flex items-center" aria-label="Kopi Ruang">
+              <img
+                src="assets/logo.png"
+                alt="Logo Kopi Ruang Specialty Shop"
+                width="1020"
+                height="1032"
+                loading="lazy"
+                decoding="async"
+                class="h-14 w-auto block"
+              />
+            </a>
+            <p class="kr-body mt-4 mb-0 max-w-xs" style="color: var(--text-muted-dark);">
+              Specialty coffee dari biji lokal pilihan, dalam suasana yang tenang
+              untuk bekerja dan bercerita.
+            </p>
+          </div>
+
+          <!-- Kolom 2: Tautan Navigasi -->
+          <div class="lg:col-span-2">
+            <h3 class="kr-caption font-semibold uppercase tracking-wider m-0" style="color: var(--gold-500);">
+              Navigasi
+            </h3>
+            <ul class="list-none p-0 m-0 mt-4 space-y-2.5">
+              <li>
+                <a href="#tentang" class="kr-caption no-underline hover:underline underline-offset-4" style="color: var(--cream-100);">
+                  Tentang
+                </a>
+              </li>
+              <li>
+                <a href="#keunggulan" class="kr-caption no-underline hover:underline underline-offset-4" style="color: var(--cream-100);">
+                  Keunggulan
+                </a>
+              </li>
+              <li>
+                <a href="#menu" class="kr-caption no-underline hover:underline underline-offset-4" style="color: var(--cream-100);">
+                  Menu
+                </a>
+              </li>
+              <li>
+                <a href="#galeri" class="kr-caption no-underline hover:underline underline-offset-4" style="color: var(--cream-100);">
+                  Galeri
+                </a>
+              </li>
+              <li>
+                <a href="#ulasan" class="kr-caption no-underline hover:underline underline-offset-4" style="color: var(--cream-100);">
+                  Ulasan
+                </a>
+              </li>
+              <li>
+                <a href="#lokasi" class="kr-caption no-underline hover:underline underline-offset-4" style="color: var(--cream-100);">
+                  Lokasi
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Kolom 3: Kontak & Jam Buka Ringkas -->
+          <div class="lg:col-span-3">
+            <h3 class="kr-caption font-semibold uppercase tracking-wider m-0" style="color: var(--gold-500);">
+              Kontak &amp; Jam Buka
+            </h3>
+            <div class="mt-4 space-y-2 kr-caption" style="color: var(--text-muted-dark);">
+              <div>Jl. Kopi Ruang No. 12, Jakarta Selatan</div>
+              <div>Senin – Jumat: 08.00 – 22.00 WIB</div>
+              <div>Sabtu – Minggu: 08.00 – 23.00 WIB</div>
+              <div>WhatsApp: +62 812-3456-7890</div>
+            </div>
+          </div>
+
+          <!-- Kolom 4: Ikon Sosial & Style Guide -->
+          <div class="lg:col-span-3">
+            <h3 class="kr-caption font-semibold uppercase tracking-wider m-0" style="color: var(--gold-500);">
+              Ikuti Kami
+            </h3>
+            <div class="mt-4 flex items-center gap-3">
+              <!-- Instagram -->
+              <a
+                href="https://instagram.com/kopiruang"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center w-11 h-11 rounded-md border transition-colors"
+                style="border-color: var(--border-dark); color: var(--cream-100);"
+                aria-label="Instagram Kopi Ruang"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--gold-500)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+
+              <!-- TikTok -->
+              <a
+                href="https://tiktok.com/@kopiruang"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center w-11 h-11 rounded-md border transition-colors"
+                style="border-color: var(--border-dark); color: var(--cream-100);"
+                aria-label="TikTok Kopi Ruang"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--gold-500)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
+              </a>
+
+              <!-- WhatsApp -->
+              <a
+                href="https://wa.me/6281234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center w-11 h-11 rounded-md border transition-colors"
+                style="border-color: var(--border-dark); color: var(--cream-100);"
+                aria-label="WhatsApp Kopi Ruang"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--gold-500)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="mt-5">
+              <a
+                href="style-guide.html"
+                class="kr-caption no-underline hover:underline underline-offset-4"
+                style="color: var(--gold-500);"
+              >
+                Lihat Style Guide &amp; Design System &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Baris Bawah Footer -->
+        <div
+          class="mt-12 pt-6 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          style="border-color: rgba(179, 154, 110, 0.28);"
+        >
+          <p class="kr-caption m-0" style="color: var(--text-muted-dark);">
+            &copy; 2026 Kopi Ruang. Proyek konsep portofolio oleh Irfan Fahrezi.
+            Seluruh data, harga, dan testimoni bersifat fiktif.
+          </p>
+
+          <a
+            href="#hero"
+            class="kr-caption font-medium whitespace-nowrap shrink-0 no-underline hover:underline underline-offset-4"
+            style="color: var(--gold-500);"
+          >
+            Kembali ke atas &uarr;
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lightbox Galeri (role="dialog", fokus terkunci, Esc & Panah Kiri/Kanan) -->
+    <div
+      id="gallery-lightbox"
+      class="kr-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-caption"
+      aria-hidden="true"
+    >
+      <div class="kr-container flex items-center justify-between gap-4">
+        <div
+          id="lightbox-counter"
+          class="kr-caption font-medium"
+          style="color: var(--gold-500); font-variant-numeric: tabular-nums;"
+        >
+          1 / 6
+        </div>
+
+        <button
+          type="button"
+          id="lightbox-close"
+          class="kr-lightbox-btn"
+          aria-label="Tutup pratinjau galeri"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="kr-container my-auto flex items-center justify-center gap-3 sm:gap-6">
+        <button
+          type="button"
+          id="lightbox-prev"
+          class="kr-lightbox-btn"
+          aria-label="Foto sebelumnya"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        <figure class="m-0 flex-1 max-w-3xl flex flex-col items-center">
+          <picture>
+            <!-- Siap WebP: sinkronkan <source> saat aset .webp tersedia -->
+            <img
+              id="lightbox-image"
+              src=""
+              alt=""
+              width="1200"
+              height="896"
+              loading="lazy"
+              decoding="async"
+              class="max-h-[70vh] w-auto max-w-full rounded-xl object-contain border"
+              style="border-color: var(--border-dark); background-color: var(--green-900);"
+              referrerpolicy="no-referrer"
+            />
+          </picture>
+          <figcaption
+            id="lightbox-caption"
+            class="kr-body mt-4 text-center"
+            style="color: var(--cream-100);"
+          ></figcaption>
+        </figure>
+
+        <button
+          type="button"
+          id="lightbox-next"
+          class="kr-lightbox-btn"
+          aria-label="Foto berikutnya"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="kr-container text-center">
+        <span class="kr-caption" style="color: var(--text-muted-dark);">
+          Gunakan panah kiri/kanan untuk berpindah foto atau tekan Esc untuk menutup
+        </span>
+      </div>
+    </div>
+
+    <!-- Dialog Pesan Online (Dengan pilihan menu + tombol "Lanjut ke WhatsApp") -->
+    <dialog
+      id="order-dialog"
+      class="kr-dialog"
+      aria-labelledby="order-dialog-title"
+    >
+      <div class="p-6 sm:p-7">
+        <div class="flex items-start justify-between gap-4">
+          <div class="kr-section-heading">
+            <span class="kr-kicker">Pesan Online</span>
+            <h2
+              id="order-dialog-title"
+              class="kr-h3"
+              style="color: var(--cream-100);"
+            >
+              Pesan untuk Ambil di Bar
+            </h2>
+          </div>
+          <button
+            type="button"
+            id="order-dialog-close"
+            class="inline-flex items-center justify-center w-10 h-10 rounded-md border cursor-pointer shrink-0"
+            style="
+              border-color: var(--border-dark);
+              color: var(--cream-100);
+              background-color: transparent;
+            "
+            aria-label="Tutup dialog pesan online"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <p class="kr-body mt-4 mb-5" style="color: var(--text-muted-dark);">
+          Pilih menu favoritmu dan lanjutkan ke WhatsApp dengan format pesan yang
+          sudah terisi otomatis.
+        </p>
+
+        <div class="space-y-4">
+          <div>
+            <label
+              for="order-menu-select"
+              class="block kr-caption font-medium mb-1.5"
+              style="color: var(--gold-500);"
+            >
+              Pilih Item Menu
+            </label>
+            <select
+              id="order-menu-select"
+              class="w-full min-h-[44px] px-3.5 py-2.5 rounded-md border kr-body"
+              style="
+                background-color: var(--green-700);
+                border-color: var(--border-dark);
+                color: var(--cream-100);
+              "
+            >
+              <optgroup label="Coffee">
+                <option value="Espresso (Rp22.000)">Espresso — Rp22.000</option>
+                <option value="Americano (Rp25.000)">Americano — Rp25.000</option>
+                <option value="Café Latte (Rp32.000)">Café Latte — Rp32.000</option>
+                <option value="V60 Single Origin (Rp35.000)">V60 Single Origin — Rp35.000</option>
+              </optgroup>
+              <optgroup label="Signature Drinks">
+                <option value="Kopi Ruang Latte (Rp36.000)" selected>Kopi Ruang Latte — Rp36.000</option>
+                <option value="Pandan Cold Brew (Rp34.000)">Pandan Cold Brew — Rp34.000</option>
+                <option value="Es Kopi Gula Aren (Rp30.000)">Es Kopi Gula Aren — Rp30.000</option>
+                <option value="Oat Honey Cappuccino (Rp38.000)">Oat Honey Cappuccino — Rp38.000</option>
+              </optgroup>
+              <optgroup label="Pastry">
+                <option value="Butter Croissant (Rp28.000)">Butter Croissant — Rp28.000</option>
+                <option value="Almond Croissant (Rp32.000)">Almond Croissant — Rp32.000</option>
+                <option value="Banana Bread (Rp26.000)">Banana Bread — Rp26.000</option>
+                <option value="Choco Chip Cookie (Rp20.000)">Choco Chip Cookie — Rp20.000</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="pt-2 flex flex-col gap-3">
+            <a
+              id="order-wa-link"
+              href="https://wa.me/6281234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="kr-btn kr-btn-primary w-full"
+            >
+              Lanjut ke WhatsApp
+            </a>
+            <a
+              href="#menu"
+              data-close-order
+              class="kr-btn kr-btn-secondary kr-btn-secondary--dark w-full"
+            >
+              Lihat Daftar Menu
+            </a>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Vanilla JavaScript: Navbar Compact, Store Status, Tabs, Lightbox, WhatsApp Order & Reveal -->
+    <script>
+      (function () {
+        const prefersReduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        // 1. Sticky Navbar Gold Hairline (>12px) & Compact Height (>40px)
+        const navbar = document.getElementById("navbar");
+        function updateNavbarOnScroll() {
+          if (!navbar) return;
+          const y = window.scrollY;
+          navbar.classList.toggle("is-scrolled", y > 12);
+          navbar.classList.toggle("is-compact", y > 40);
+        }
+        updateNavbarOnScroll();
+        window.addEventListener("scroll", updateNavbarOnScroll, { passive: true });
+
+        // 2. Accessible Full-Screen Mobile Menu Panel
+        const mobileOpenBtn = document.getElementById("mobile-menu-open");
+        const mobileCloseBtn = document.getElementById("mobile-menu-close");
+        const mobilePanel = document.getElementById("mobile-menu-panel");
+        let isMenuOpen = false;
+
+        function openMobileMenu() {
+          if (!mobilePanel || !mobileOpenBtn) return;
+          isMenuOpen = true;
+          mobilePanel.classList.add("is-open");
+          mobilePanel.setAttribute("aria-hidden", "false");
+          mobileOpenBtn.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+          if (mobileCloseBtn) mobileCloseBtn.focus();
+        }
+
+        function closeMobileMenu(restoreFocus = true) {
+          if (!mobilePanel || !mobileOpenBtn || !isMenuOpen) return;
+          isMenuOpen = false;
+          mobilePanel.classList.remove("is-open");
+          mobilePanel.setAttribute("aria-hidden", "true");
+          mobileOpenBtn.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+          if (restoreFocus) mobileOpenBtn.focus();
+        }
+
+        if (mobileOpenBtn) mobileOpenBtn.addEventListener("click", openMobileMenu);
+        if (mobileCloseBtn) {
+          mobileCloseBtn.addEventListener("click", () => closeMobileMenu(true));
+        }
+        document.querySelectorAll(".mobile-nav-item").forEach((link) => {
+          link.addEventListener("click", () => closeMobileMenu(false));
+        });
+
+        // 3. Accessible Menu Category Tabs
+        const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+        const panels = {
+          coffee: document.getElementById("panel-coffee"),
+          signature: document.getElementById("panel-signature"),
+          pastry: document.getElementById("panel-pastry"),
+        };
+        let activeKey = "coffee";
+
+        function activateTab(nextKey, focusTab = false) {
+          if (!panels[nextKey] || nextKey === activeKey) return;
+          const prevPanel = panels[activeKey];
+          const nextPanel = panels[nextKey];
+          activeKey = nextKey;
+
+          tabs.forEach((tab) => {
+            const isTarget = tab.getAttribute("data-tab-target") === nextKey;
+            tab.setAttribute("aria-selected", String(isTarget));
+            tab.setAttribute("tabindex", isTarget ? "0" : "-1");
+            if (isTarget && focusTab) tab.focus();
+          });
+
+          if (prefersReduced) {
+            Object.keys(panels).forEach((k) => {
+              if (panels[k]) panels[k].hidden = k !== nextKey;
+            });
+            return;
+          }
+
+          if (prevPanel) {
+            prevPanel.classList.add("is-fading");
+            setTimeout(() => {
+              prevPanel.hidden = true;
+              prevPanel.classList.remove("is-fading");
+
+              nextPanel.classList.add("is-fading");
+              nextPanel.hidden = false;
+              requestAnimationFrame(() => {
+                nextPanel.classList.remove("is-fading");
+              });
+            }, 150);
+          }
+        }
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener("click", () => {
+            activateTab(tab.getAttribute("data-tab-target"), false);
+          });
+
+          tab.addEventListener("keydown", (event) => {
+            let nextIndex = null;
+            if (event.key === "ArrowRight") {
+              nextIndex = (index + 1) % tabs.length;
+            } else if (event.key === "ArrowLeft") {
+              nextIndex = (index - 1 + tabs.length) % tabs.length;
+            } else if (event.key === "Home") {
+              nextIndex = 0;
+            } else if (event.key === "End") {
+              nextIndex = tabs.length - 1;
+            }
+            if (nextIndex !== null) {
+              event.preventDefault();
+              activateTab(tabs[nextIndex].getAttribute("data-tab-target"), true);
+            }
+          });
+        });
+
+        // 4. Accessible Gallery Lightbox
+        const galleryItems = [
+          {
+            src: "/src/assets/images/tentang-interior-cafe.jpg",
+            width: 896,
+            height: 1200,
+            alt: "Interior Kopi Ruang dengan dinding plaster krem, lengkungan arch, dan kursi beludru hijau tua",
+            caption: "Interior Café — Ruang duduk hangat dengan lengkungan arsitektur.",
+          },
+          {
+            src: "/src/assets/images/galeri-meja-kerja.jpg",
+            width: 896,
+            height: 1200,
+            alt: "Meja kayu oak di sudut tenang Kopi Ruang lengkap dengan laptop, buku catatan, dan secangkir kopi",
+            caption: "Sudut Kerja Fokus — Pencahayaan lembut dan koneksi WiFi cepat.",
+          },
+          {
+            src: "/src/assets/images/galeri-bar-seduh.jpg",
+            width: 1200,
+            height: 896,
+            alt: "Bar kopi Kopi Ruang dengan meja batu travertine, panel kayu hijau tua, mesin espresso, dan tanaman pot",
+            caption: "Bar Seduh — Tempat racikan espresso dan manual brew disiapkan.",
+          },
+          {
+            src: "/src/assets/images/menu-pastry.jpg",
+            width: 1200,
+            height: 896,
+            alt: "Croissant mentega, almond croissant, dan banana bread panggang di atas piring keramik krem",
+            caption: "Homemade Pastries — Dipanggang segar setiap pagi.",
+          },
+          {
+            src: "/src/assets/images/hero-pour-over.jpg",
+            width: 896,
+            height: 1200,
+            alt: "Detail tanaman hijau segar di dekat meja batu travertine dengan seduhan pour-over",
+            caption: "Detail Tanaman & Seduh — Sentuhan hijau alami di dekat jendela.",
+          },
+          {
+            src: "/src/assets/images/menu-espresso.jpg",
+            width: 1200,
+            height: 896,
+            alt: "Cangkir espresso matte hijau tua dengan sendok kuningan di atas kain linen krem",
+            caption: "Cangkir & Tekstur — Penyajian sederhana yang menghargai karakter biji.",
+          },
+        ];
+
+        const lightbox = document.getElementById("gallery-lightbox");
+        const lightboxImg = document.getElementById("lightbox-image");
+        const lightboxCaption = document.getElementById("lightbox-caption");
+        const lightboxCounter = document.getElementById("lightbox-counter");
+        const lightboxCloseBtn = document.getElementById("lightbox-close");
+        const lightboxPrevBtn = document.getElementById("lightbox-prev");
+        const lightboxNextBtn = document.getElementById("lightbox-next");
+
+        const lightboxFocusables = [
+          lightboxCloseBtn,
+          lightboxPrevBtn,
+          lightboxNextBtn,
+        ].filter(Boolean);
+
+        let isLightboxOpen = false;
+        let currentIndex = 0;
+        let lastTriggerEl = null;
+
+        function renderLightboxSlide(index) {
+          const total = galleryItems.length;
+          currentIndex = ((index % total) + total) % total;
+          const item = galleryItems[currentIndex];
+          if (lightboxImg) {
+            lightboxImg.src = item.src;
+            lightboxImg.alt = item.alt;
+            lightboxImg.width = item.width;
+            lightboxImg.height = item.height;
+          }
+          if (lightboxCaption) lightboxCaption.textContent = item.caption;
+          if (lightboxCounter) {
+            lightboxCounter.textContent = currentIndex + 1 + " / " + total;
+          }
+        }
+
+        function openLightbox(index, triggerEl) {
+          if (!lightbox) return;
+          lastTriggerEl = triggerEl || document.activeElement;
+          renderLightboxSlide(index);
+          isLightboxOpen = true;
+          lightbox.classList.add("is-open");
+          lightbox.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+          if (lightboxCloseBtn) lightboxCloseBtn.focus();
+        }
+
+        function closeLightbox() {
+          if (!lightbox || !isLightboxOpen) return;
+          isLightboxOpen = false;
+          lightbox.classList.remove("is-open");
+          lightbox.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          if (lastTriggerEl && typeof lastTriggerEl.focus === "function") {
+            lastTriggerEl.focus();
+          }
+        }
+
+        document.querySelectorAll("[data-lightbox-index]").forEach((tile) => {
+          tile.addEventListener("click", () => {
+            const idx = Number(tile.getAttribute("data-lightbox-index")) || 0;
+            openLightbox(idx, tile);
+          });
+        });
+
+        if (lightboxCloseBtn) lightboxCloseBtn.addEventListener("click", closeLightbox);
+        if (lightboxPrevBtn) {
+          lightboxPrevBtn.addEventListener("click", () =>
+            renderLightboxSlide(currentIndex - 1)
+          );
+        }
+        if (lightboxNextBtn) {
+          lightboxNextBtn.addEventListener("click", () =>
+            renderLightboxSlide(currentIndex + 1)
+          );
+        }
+
+        if (lightbox) {
+          lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) closeLightbox();
+          });
+        }
+
+        document.addEventListener("keydown", (event) => {
+          if (isLightboxOpen) {
+            if (event.key === "Escape") {
+              event.preventDefault();
+              closeLightbox();
+              return;
+            }
+            if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              renderLightboxSlide(currentIndex - 1);
+              return;
+            }
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              renderLightboxSlide(currentIndex + 1);
+              return;
+            }
+            if (event.key === "Tab" && lightboxFocusables.length > 0) {
+              const first = lightboxFocusables[0];
+              const last = lightboxFocusables[lightboxFocusables.length - 1];
+              if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+              } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+              }
+            }
+            return;
+          }
+
+          if (event.key === "Escape" && isMenuOpen) {
+            event.preventDefault();
+            closeMobileMenu(true);
+          }
+        });
+
+        // 5. Indikator Jam Buka Lokal (Sen-Jum 08.00-22.00, Sab-Min 08.00-23.00)
+        const statusBox = document.getElementById("store-status-indicator");
+        const statusText = document.getElementById("store-status-text");
+        if (statusBox && statusText) {
+          const now = new Date();
+          const day = now.getDay(); // 0 = Minggu, 6 = Sabtu
+          const hour = now.getHours() + now.getMinutes() / 60;
+          const isWeekend = day === 0 || day === 6;
+          const closeHour = isWeekend ? 23 : 22;
+          const isOpen = hour >= 8 && hour < closeHour;
+
+          if (isOpen) {
+            statusText.textContent =
+              "Buka sekarang · Tutup pukul " + (isWeekend ? "23.00" : "22.00");
+            statusBox.style.backgroundColor = "var(--green-900)";
+            statusBox.style.borderColor = "var(--green-900)";
+            statusBox.style.color = "var(--cream-100)";
+          } else {
+            statusText.textContent = "Tutup · Buka kembali pukul 08.00";
+            statusBox.style.backgroundColor = "var(--cream-100)";
+            statusBox.style.borderColor = "var(--espresso-900)";
+            statusBox.style.color = "var(--espresso-900)";
+          }
+        }
+
+        // 6. Pesan Online Dialog + Pre-filled WhatsApp Link
+        const orderDialog = document.getElementById("order-dialog");
+        const orderDialogClose = document.getElementById("order-dialog-close");
+        const orderSelect = document.getElementById("order-menu-select");
+        const orderWaLink = document.getElementById("order-wa-link");
+
+        function updateOrderWaHref() {
+          if (!orderSelect || !orderWaLink) return;
+          const item = orderSelect.value;
+          const msg =
+            "Halo Kopi Ruang, saya ingin pesan " +
+            item +
+            " untuk diambil di bar.";
+          orderWaLink.href =
+            "https://wa.me/6281234567890?text=" + encodeURIComponent(msg);
+        }
+
+        if (orderSelect) {
+          orderSelect.addEventListener("change", updateOrderWaHref);
+          updateOrderWaHref();
+        }
+
+        document.querySelectorAll("[data-open-order]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            if (isMenuOpen) closeMobileMenu(false);
+            updateOrderWaHref();
+            if (orderDialog && typeof orderDialog.showModal === "function") {
+              orderDialog.showModal();
+            }
+          });
+        });
+
+        if (orderDialogClose && orderDialog) {
+          orderDialogClose.addEventListener("click", () => orderDialog.close());
+          orderDialog.addEventListener("click", (event) => {
+            if (event.target === orderDialog) orderDialog.close();
+          });
+        }
+
+        document.querySelectorAll("[data-close-order]").forEach((link) => {
+          link.addEventListener("click", () => {
+            if (orderDialog && orderDialog.open) orderDialog.close();
+          });
+        });
+
+        // 7. Scroll Reveal Animation (.kr-reveal)
+        const revealEls = Array.from(document.querySelectorAll(".kr-reveal"));
+        if (prefersReduced || !("IntersectionObserver" in window)) {
+          revealEls.forEach((el) => el.classList.add("is-visible"));
+        } else {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -16px 0px" }
+          );
+          revealEls.forEach((el) => observer.observe(el));
+        }
+      })();
+    </script>
+  </body>
+</html>

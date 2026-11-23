@@ -1,0 +1,6 @@
+{
+  "name": "Kopi Ruang — Design System",
+  "description": "Fondasi design system minimal dan cozy untuk landing page specialty coffee café Kopi Ruang.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
