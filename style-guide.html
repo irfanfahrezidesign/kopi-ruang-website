@@ -34,7 +34,7 @@
         --green-900: #17291f; /* Primary, section gelap */
         --green-700: #22392c; /* Secondary, panel di atas hijau */
         --gold-500: #b39a6e; /* Accent, CTA, garis, ikon */
-        --gold-700: #7a6035; /* Teks emas di latar terang (WCAG AA >= 4.5:1 di cream-100) */
+        --gold-700: #6b5230; /* Teks emas di latar terang (WCAG AA >= 4.5:1 di cream-100 & beige-200) */
         --cream-100: #f5efe3; /* Background utama */
         --beige-200: #e8dcc4; /* Surface / kartu */
         --espresso-900: #2b1f17; /* Teks utama di latar terang */
@@ -701,7 +701,7 @@
               class="kr-swatch kr-card-beige p-4 text-left transition-transform duration-150 hover:-translate-y-0.5 cursor-pointer kr-reveal"
               data-delay="1"
               data-token="--gold-700"
-              data-hex="#7A6035"
+              data-hex="#6B5230"
             >
               <div
                 class="h-24 w-full rounded-md"
@@ -709,7 +709,7 @@
               ></div>
               <div class="mt-3.5 flex items-baseline justify-between gap-2">
                 <span class="kr-body font-medium" style="color: var(--espresso-900);">--gold-700</span>
-                <span class="kr-caption" style="color: var(--gold-700);">#7A6035</span>
+                <span class="kr-caption" style="color: var(--gold-700);">#6B5230</span>
               </div>
               <p class="kr-caption mt-1 mb-0" style="color: var(--text-muted-light);">
                 Teks emas di latar terang (AA)
@@ -1186,7 +1186,7 @@
         const copyRootBtn = document.getElementById("copy-root-btn");
         if (copyRootBtn) {
           copyRootBtn.addEventListener("click", () => {
-            const rootSnippet = `:root {\n  --green-900: #17291F;\n  --green-700: #22392C;\n  --gold-500: #B39A6E;\n  --gold-700: #7A6035;\n  --cream-100: #F5EFE3;\n  --beige-200: #E8DCC4;\n  --espresso-900: #2B1F17;\n  --sage-500: #7F8F7A;\n}`;
+            const rootSnippet = `:root {\n  --green-900: #17291F;\n  --green-700: #22392C;\n  --gold-500: #B39A6E;\n  --gold-700: #6B5230;\n  --cream-100: #F5EFE3;\n  --beige-200: #E8DCC4;\n  --espresso-900: #2B1F17;\n  --sage-500: #7F8F7A;\n}`;
             copyText(rootSnippet, "Variabel warna :root");
           });
         }

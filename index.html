@@ -70,7 +70,7 @@
         --green-900: #17291f; /* Primary, section gelap */
         --green-700: #22392c; /* Secondary, panel di atas hijau */
         --gold-500: #b39a6e; /* Accent, CTA, garis, ikon */
-        --gold-700: #7a6035; /* Teks emas di latar terang (WCAG AA >= 4.5:1 di cream-100) */
+        --gold-700: #6b5230; /* Teks emas di latar terang (WCAG AA >= 4.5:1 di cream-100 & beige-200) */
         --cream-100: #f5efe3; /* Background utama */
         --beige-200: #e8dcc4; /* Surface / kartu */
         --espresso-900: #2b1f17; /* Teks utama di latar terang */
@@ -2355,8 +2355,8 @@
                   </div>
 
                   <!-- Detail Info -->
-                  <dl class="mt-6 space-y-5 m-0">
-                    <div>
+                  <dl class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5 m-0">
+                    <div class="sm:col-span-2">
                       <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
                         Alamat
                       </dt>
@@ -2365,7 +2365,7 @@
                       </dd>
                     </div>
 
-                    <div>
+                    <div class="sm:col-span-2">
                       <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
                         Jam Buka
                       </dt>
@@ -2375,42 +2375,40 @@
                       </dd>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
-                          WhatsApp
-                        </dt>
-                        <dd class="kr-body m-0 mt-1" style="color: var(--espresso-900); font-variant-numeric: tabular-nums;">
-                          <a
-                            data-contact-wa="link"
-                            href="https://wa.me/6280000000000"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="no-underline hover:underline underline-offset-4"
-                            style="color: var(--espresso-900);"
-                          >
-                            +62 800-0000-0000
-                          </a>
-                        </dd>
-                      </div>
+                    <div>
+                      <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
+                        WhatsApp
+                      </dt>
+                      <dd class="kr-body m-0 mt-1" style="color: var(--espresso-900); font-variant-numeric: tabular-nums;">
+                        <a
+                          data-contact-wa="link"
+                          href="https://wa.me/6280000000000"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="no-underline hover:underline underline-offset-4"
+                          style="color: var(--espresso-900);"
+                        >
+                          +62 800-0000-0000
+                        </a>
+                      </dd>
+                    </div>
 
-                      <div>
-                        <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
-                          Instagram
-                        </dt>
-                        <dd class="kr-body m-0 mt-1" style="color: var(--espresso-900);">
-                          <a
-                            data-contact-ig="link"
-                            href="https://instagram.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="no-underline hover:underline underline-offset-4"
-                            style="color: var(--espresso-900);"
-                          >
-                            instagram.com
-                          </a>
-                        </dd>
-                      </div>
+                    <div>
+                      <dt class="kr-caption font-semibold uppercase tracking-wider" style="color: var(--gold-700);">
+                        Instagram
+                      </dt>
+                      <dd class="kr-body m-0 mt-1" style="color: var(--espresso-900);">
+                        <a
+                          data-contact-ig="link"
+                          href="https://instagram.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="no-underline hover:underline underline-offset-4"
+                          style="color: var(--espresso-900);"
+                        >
+                          instagram.com
+                        </a>
+                      </dd>
                     </div>
                   </dl>
                 </div>
