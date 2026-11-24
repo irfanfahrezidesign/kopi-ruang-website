@@ -2,21 +2,29 @@
 
 Proyek ini adalah konsep portofolio. Seluruh foto dibuat dengan AI. Seluruh data, harga, dan testimoni bersifat fiktif.
 
+Foto dikompres ke format WebP untuk performa.
+
 ## Daftar Aset Gambar
 
 | Nama File | Section yang Memakainya | Sumber | Catatan |
 | --- | --- | --- | --- |
 | `public/assets/logo.png` | Navbar, Menu Mobile, Footer (`index.html`) | Aset lampiran pemilik proyek (asal/lisensi tidak diketahui) | Logo transparan `1020×1032 px` (~107 KB); dipakai langsung di atas latar `--green-900`. |
-| `src/assets/images/hero-pour-over.jpg` | Hero, Menu (V60 Single Origin), Galeri (Detail Tanaman & Seduh), Style Guide | Dibuat dengan AI (Gemini Image Generation) | `896×1200 px` (~735 KB). Ada emboss tulisan `"Kalita"` samar pada dripper keramik putih; tidak ada kemasan atau label produk. |
-| `src/assets/images/tentang-interior-cafe.jpg` | Tentang Kami, Galeri (Interior Café), Style Guide | Dibuat dengan AI (Gemini Image Generation) | `896×1200 px` (~752 KB). Bersih, tidak ada tulisan atau merek terlihat. |
-| `src/assets/images/menu-espresso.jpg` | Menu (Espresso), Galeri (Cangkir & Tekstur), Style Guide | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~828 KB). Bersih, tidak ada tulisan atau merek terlihat. |
-| `src/assets/images/menu-americano.jpg` | Menu (Americano) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~824 KB). Bersih, tidak ada tulisan atau merek terlihat. |
-| `src/assets/images/menu-cafe-latte.jpg` | Menu (Café Latte, Oat Honey Cappuccino) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~693 KB). Bersih, tidak ada tulisan atau merek terlihat. |
-| `src/assets/images/menu-signature-dingin.jpg` | Menu (Kopi Ruang Latte, Pandan Cold Brew, Es Kopi Gula Aren) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~763 KB). Bersih, tidak ada tulisan atau merek terlihat; saat ini dipakai ulang untuk tiga kartu minuman dingin. |
-| `src/assets/images/menu-pastry.jpg` | Menu (Butter Croissant, Almond Croissant, Banana Bread, Choco Chip Cookie), Galeri (Homemade Pastries) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~806 KB). Bersih, tidak ada tulisan atau merek terlihat; saat ini dipakai ulang untuk empat kartu pastry. |
-| `src/assets/images/galeri-meja-kerja.jpg` | Galeri (Sudut Kerja Fokus) | Dibuat dengan AI (Gemini Image Generation) | `896×1200 px` (~685 KB). Ada tampilan antarmuka web samar di layar laptop (mirip huruf `"G"`), tanpa merek laptop terlihat. |
-| `src/assets/images/galeri-bar-seduh.jpg` | Galeri (Bar Seduh) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~778 KB). Ada papan menu meja bertuliskan `"Menu / Filter Coffee / Espresso / Latte"` dan kemasan kopi polos di rak belakang. |
+| `src/assets/images/hero-pour-over.webp` | Hero, Galeri (Detail Tanaman & Seduh) & Lightbox, Style Guide | Dibuat dengan AI (Gemini Image Generation) | `896×1200 px` (~58 KB), format WebP. Ada emboss tulisan `"Kalita"` samar pada dripper keramik putih; tidak ada kemasan atau label produk. |
+| `src/assets/images/tentang-interior-cafe.webp` | Tentang Kami, Galeri (Interior Café) & Lightbox, Style Guide | Dibuat dengan AI (Gemini Image Generation) | `896×1200 px` (~72 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-espresso.webp` | Menu (Espresso), Galeri (Cangkir & Tekstur) & Lightbox, Style Guide | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~109 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-americano.webp` | Menu (Americano) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~106 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-cafe-latte.webp` | Menu (Café Latte) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~48 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat; kini dipakai khusus oleh Café Latte. |
+| `src/assets/images/menu-v60-single-origin.webp` | Menu (V60 Single Origin) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~42 KB), format WebP. Ada emboss angka kecil `"02"` pada dripper keramik putih, tanpa merek/label. |
+| `src/assets/images/menu-kopi-ruang-latte.webp` | Menu (Kopi Ruang Latte) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~43 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-pandan-cold-brew.webp` | Menu (Pandan Cold Brew) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~40 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-es-kopi-gula-aren.webp` | Menu (Es Kopi Gula Aren) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~42 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-oat-honey-cappuccino.webp` | Menu (Oat Honey Cappuccino) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~44 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-butter-croissant.webp` | Menu (Butter Croissant) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~44 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-almond-croissant.webp` | Menu (Almond Croissant) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~43 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-banana-bread.webp` | Menu (Banana Bread) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~73 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-choco-chip-cookie.webp` | Menu (Choco Chip Cookie) | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~56 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
+| `src/assets/images/menu-pastry.webp` | Galeri (Homemade Pastries) & Lightbox | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~96 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat; dipertahankan khusus untuk foto kompilasi Galeri & Lightbox. |
+| `src/assets/images/galeri-meja-kerja.webp` | Galeri (Sudut Kerja Fokus) & Lightbox | Dibuat dengan AI (Gemini Image Generation) | `896×1200 px` (~49 KB), format WebP. Ada tampilan antarmuka web samar di layar laptop (mirip huruf `"G"`), tanpa merek laptop terlihat. |
+| `src/assets/images/galeri-bar-seduh.webp` | Galeri (Bar Seduh) & Lightbox | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~81 KB), format WebP. Ada papan menu meja bertuliskan `"Menu / Filter Coffee / Espresso / Latte"` dan kemasan kopi polos di rak belakang. |
 
-## Catatan Migrasi WebP
-
-Setiap foto pada `index.html` dan `style-guide.html` sudah dibungkus elemen `<picture>` dengan komentar `<source srcset="...webp" type="image/webp" />`. Setelah file `.webp` hasil kompresi ditambahkan ke `src/assets/images/`, cukup hapus tanda komentar HTML pada tag `<source>` terkait.
+*(Catatan: Seluruh 12 item pada section Menu Unggulan kini memiliki foto masing-masing dan tidak ada lagi item menu yang berbagi foto. `hero-pour-over.webp` tetap dipertahankan karena masih aktif dipakai di Hero, Galeri, dan Style Guide.)*
