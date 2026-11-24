@@ -11,6 +11,7 @@
     <meta name="theme-color" content="#17291F" />
 
     <!-- Open Graph / Social SEO -->
+    <meta property="og:url" content="https://kopiruang.id/" />
     <meta
       property="og:title"
       content="Kopi Ruang — Specialty Coffee Shop &amp; Ruang Kerja Nyaman"
@@ -22,6 +23,13 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="Kopi Ruang" />
+    <meta property="og:image" content="/assets/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Seduhan kopi pour-over dari teko tembaga ke dripper keramik putih dengan latar tanaman hijau di Kopi Ruang"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -30,6 +38,11 @@
     <meta
       name="twitter:description"
       content="Specialty coffee dari biji lokal pilihan, dalam suasana yang nyaman untuk bekerja dan berkumpul."
+    />
+    <meta name="twitter:image" content="/assets/og-image.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Seduhan kopi pour-over dari teko tembaga ke dripper keramik putih dengan latar tanaman hijau di Kopi Ruang"
     />
 
     <!-- Favicon: Lambang Arch Logo Kopi Ruang -->
@@ -2369,13 +2382,14 @@
                         </dt>
                         <dd class="kr-body m-0 mt-1" style="color: var(--espresso-900); font-variant-numeric: tabular-nums;">
                           <a
-                            href="https://wa.me/6281234567890"
+                            data-contact-wa="link"
+                            href="https://wa.me/6280000000000"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="no-underline hover:underline underline-offset-4"
                             style="color: var(--espresso-900);"
                           >
-                            +62 812-3456-7890
+                            +62 800-0000-0000
                           </a>
                         </dd>
                       </div>
@@ -2386,13 +2400,14 @@
                         </dt>
                         <dd class="kr-body m-0 mt-1" style="color: var(--espresso-900);">
                           <a
-                            href="https://instagram.com/kopiruang"
+                            data-contact-ig="link"
+                            href="https://instagram.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="no-underline hover:underline underline-offset-4"
                             style="color: var(--espresso-900);"
                           >
-                            @kopiruang
+                            instagram.com
                           </a>
                         </dd>
                       </div>
@@ -2411,7 +2426,8 @@
                     Petunjuk Arah
                   </a>
                   <a
-                    href="https://wa.me/6281234567890?text=Halo%20Kopi%20Ruang%2C%20saya%20ingin%20bertanya%20seputar%20reservasi%20dan%20menu."
+                    data-contact-wa="chat"
+                    href="https://wa.me/6280000000000?text=Halo%20Kopi%20Ruang%2C%20saya%20ingin%20bertanya%20seputar%20reservasi%20dan%20menu."
                     target="_blank"
                     rel="noopener noreferrer"
                     class="kr-btn kr-btn-secondary"
@@ -2570,7 +2586,7 @@
               <div>Jl. Kopi Ruang No. 12, Jakarta Selatan</div>
               <div>Senin – Jumat: 08.00 – 22.00 WIB</div>
               <div>Sabtu – Minggu: 08.00 – 23.00 WIB</div>
-              <div>WhatsApp: +62 812-3456-7890</div>
+              <div>WhatsApp: <span data-contact-wa="display">+62 800-0000-0000</span></div>
             </div>
           </div>
 
@@ -2582,7 +2598,8 @@
             <div class="mt-4 flex items-center gap-3">
               <!-- Instagram -->
               <a
-                href="https://instagram.com/kopiruang"
+                data-contact-ig="icon"
+                href="https://instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center justify-center w-11 h-11 rounded-md border transition-colors"
@@ -2608,7 +2625,8 @@
 
               <!-- TikTok -->
               <a
-                href="https://tiktok.com/@kopiruang"
+                data-contact-tiktok="icon"
+                href="https://tiktok.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center justify-center w-11 h-11 rounded-md border transition-colors"
@@ -2632,7 +2650,8 @@
 
               <!-- WhatsApp -->
               <a
-                href="https://wa.me/6281234567890"
+                data-contact-wa="icon"
+                href="https://wa.me/6280000000000"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center justify-center w-11 h-11 rounded-md border transition-colors"
@@ -2891,7 +2910,7 @@
           <div class="pt-2 flex flex-col gap-3">
             <a
               id="order-wa-link"
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6280000000000"
               target="_blank"
               rel="noopener noreferrer"
               class="kr-btn kr-btn-primary w-full"
@@ -2913,6 +2932,47 @@
     <!-- Vanilla JavaScript: Navbar Compact, Store Status, Tabs, Lightbox, WhatsApp Order & Reveal -->
     <script>
       (function () {
+        // ganti dengan kontak asli sebelum dipakai
+        const CONTACT = {
+          whatsappNumber: "6280000000000",
+          whatsappDisplay: "+62 800-0000-0000",
+          whatsappChatText:
+            "Halo Kopi Ruang, saya ingin bertanya seputar reservasi dan menu.",
+          instagramUrl: "https://instagram.com/",
+          instagramLabel: "instagram.com",
+          tiktokUrl: "https://tiktok.com/",
+        };
+
+        const waBaseUrl = "https://wa.me/" + CONTACT.whatsappNumber;
+        document.querySelectorAll('[data-contact-wa="link"]').forEach((el) => {
+          el.href = waBaseUrl;
+          el.textContent = CONTACT.whatsappDisplay;
+        });
+        document
+          .querySelectorAll('[data-contact-wa="display"]')
+          .forEach((el) => {
+            el.textContent = CONTACT.whatsappDisplay;
+          });
+        document.querySelectorAll('[data-contact-wa="icon"]').forEach((el) => {
+          el.href = waBaseUrl;
+        });
+        document.querySelectorAll('[data-contact-wa="chat"]').forEach((el) => {
+          el.href =
+            waBaseUrl + "?text=" + encodeURIComponent(CONTACT.whatsappChatText);
+        });
+        document.querySelectorAll('[data-contact-ig="link"]').forEach((el) => {
+          el.href = CONTACT.instagramUrl;
+          el.textContent = CONTACT.instagramLabel;
+        });
+        document.querySelectorAll('[data-contact-ig="icon"]').forEach((el) => {
+          el.href = CONTACT.instagramUrl;
+        });
+        document
+          .querySelectorAll('[data-contact-tiktok="icon"]')
+          .forEach((el) => {
+            el.href = CONTACT.tiktokUrl;
+          });
+
         const prefersReduced = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
         ).matches;
@@ -3232,7 +3292,10 @@
             item +
             " untuk diambil di bar.";
           orderWaLink.href =
-            "https://wa.me/6281234567890?text=" + encodeURIComponent(msg);
+            "https://wa.me/" +
+            CONTACT.whatsappNumber +
+            "?text=" +
+            encodeURIComponent(msg);
         }
 
         if (orderSelect) {

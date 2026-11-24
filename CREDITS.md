@@ -9,6 +9,7 @@ Foto dikompres ke format WebP untuk performa.
 | Nama File | Section yang Memakainya | Sumber | Catatan |
 | --- | --- | --- | --- |
 | `public/assets/logo.png` | Navbar, Menu Mobile, Footer (`index.html`) | Aset lampiran pemilik proyek (asal/lisensi tidak diketahui) | Logo transparan `1020×1032 px` (~107 KB); dipakai langsung di atas latar `--green-900`. |
+| `public/assets/og-image.jpg` | Meta Open Graph & Twitter (`index.html`) | Dibuat dengan AI (crop `1200×630` dari `hero-pour-over.webp`) | `1200×630 px` (~80 KB), format JPEG untuk pratinjau tautan media sosial. |
 | `src/assets/images/hero-pour-over.webp` | Hero, Galeri (Detail Tanaman & Seduh) & Lightbox, Style Guide | Dibuat dengan AI (Gemini Image Generation) | `896×1200 px` (~58 KB), format WebP. Ada emboss tulisan `"Kalita"` samar pada dripper keramik putih; tidak ada kemasan atau label produk. |
 | `src/assets/images/tentang-interior-cafe.webp` | Tentang Kami, Galeri (Interior Café) & Lightbox, Style Guide | Dibuat dengan AI (Gemini Image Generation) | `896×1200 px` (~72 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
 | `src/assets/images/menu-espresso.webp` | Menu (Espresso), Galeri (Cangkir & Tekstur) & Lightbox, Style Guide | Dibuat dengan AI (Gemini Image Generation) | `1200×896 px` (~109 KB), format WebP. Bersih, tidak ada tulisan atau merek terlihat. |
