@@ -61,8 +61,7 @@ Prasyarat: [Node.js](https://nodejs.org/) (versi LTS).
 
 ```bash
 # 1. Clone repo
-git clone [https://github.com/irfanfahrezidesign/kopi-ruang-website.git](https://github.com/irfanfahrezidesign/kopi-ruang-website.git)
-cd kopi-ruang-website
+git clone https://github.com/irfanfahrezidesign/kopi-ruang-website.git
 
 # 2. Pasang dependency
 npm install
