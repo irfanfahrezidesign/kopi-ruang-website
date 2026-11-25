@@ -6,9 +6,13 @@ Landing page company profile untuk **Kopi Ruang**, sebuah specialty coffee café
 
 > **Catatan:** ini adalah proyek konsep. Seluruh data (alamat, nomor kontak, harga, jumlah pelanggan, rating, testimoni) bersifat fiktif, dan seluruh foto dibuat dengan AI. Lihat [CREDITS.md](CREDITS.md).
 
-<!-- Ganti dengan screenshot asli: simpan di folder docs/ lalu sesuaikan path -->
-<!-- ![Desktop](docs/preview-desktop.png) -->
-<!-- ![Mobile](docs/preview-mobile.png) -->
+<!--
+Tambahkan screenshot setelah file gambarnya diunggah ke folder docs/,
+lalu hapus tanda komentar di sekitar dua baris ini:
+
+![Tampilan desktop](docs/preview-desktop.png)
+![Tampilan mobile](docs/preview-mobile.png)
+-->
 
 ## Tentang Proyek
 
@@ -62,6 +66,7 @@ Prasyarat: [Node.js](https://nodejs.org/) (versi LTS).
 ```bash
 # 1. Clone repo
 git clone https://github.com/irfanfahrezidesign/kopi-ruang-website.git
+cd kopi-ruang-website
 
 # 2. Pasang dependency
 npm install
@@ -71,3 +76,50 @@ npm run dev
 
 # 4. Build untuk produksi
 npm run build
+```
+
+Proyek ini memakai file `.npmrc` (`legacy-peer-deps=true`) untuk menghindari konflik versi peer dependency saat `npm install`.
+
+## Struktur Proyek
+
+```
+├── index.html          # Landing page
+├── style-guide.html    # Design system
+├── public/assets/      # Logo dan gambar OG
+├── src/assets/images/  # Foto (WebP)
+├── vite.config.ts      # Konfigurasi build
+├── CREDITS.md          # Kredit dan asal aset
+└── README.md
+```
+
+## Performa dan Aksesibilitas
+
+Diuji dengan Google PageSpeed Insights:
+
+- **Performance:** 92-93 (mobile), 100 (desktop)
+- **Best Practices:** 100 (mobile)
+- **SEO:** 100 (mobile)
+
+<!-- Tambahkan skor Accessibility di sini setelah tes ulang. -->
+
+Foto dikonversi ke WebP sehingga total ukuran gambar turun dari sekitar 6,8 MB menjadi sekitar 0,7 MB.
+
+## Proses Pengerjaan
+
+Arah desain, design system, copywriting, pemilihan dan kurasi foto, serta pengujian dilakukan oleh saya. Kode dibangun dengan bantuan **Google AI Studio (Gemini)** melalui prompt bertahap, lalu ditinjau, diuji, dan diperbaiki berdasarkan temuan manual dan hasil audit PageSpeed.
+
+## Kredit dan Catatan
+
+- Seluruh foto dibuat dengan AI. Rincian ada di [CREDITS.md](CREDITS.md).
+- Logo berasal dari brief proyek.
+- Nama, alamat, nomor telepon, harga, dan testimoni adalah fiktif dan tidak mewakili usaha nyata.
+
+## Kontak
+
+**Irfan Fahrezi**, UI/UX dan Graphic Designer
+
+<!--
+Tambahkan link di sini kalau sudah siap, contoh:
+- Dribbble: https://dribbble.com/namamu
+- LinkedIn: https://www.linkedin.com/in/namamu
+-->
